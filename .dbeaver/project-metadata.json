@@ -1,0 +1,1 @@
+{"resources":{"ERD/lei_mysql.sql":{"default-datasource":"mysql8-186509fa64f-4049b79d5e23ba71","default-catalog":"leidb"},"ERD/lei_mysql_data.sql":{"default-datasource":"mysql8-186509fa64f-4049b79d5e23ba71","default-catalog":"leidb"},"ERD/lei_mysql_test.sql":{"default-datasource":"mysql8-186509fa64f-4049b79d5e23ba71","default-catalog":"leidb"}}}
