@@ -1,10 +1,7 @@
 package com.lec.spring.controller;
 
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/")
@@ -15,6 +12,7 @@ public class HomeController {
 
     // /home
     @RequestMapping("/home")
-    public void home() {}
-
+    public void home() {
     }
+
+}
