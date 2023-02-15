@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/")
-public class HomeController {
-    public HomeController() {
+public class MainController {
+    public MainController() {
         System.out.println(getClass().getName() + "() 생성");
     }
 
