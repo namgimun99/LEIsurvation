@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.lec.spring.repository.QnaRepository">
+    <select id="findAll"  resultType="com.lec.spring.domain.Qna">
+        SELECT
+        id,
+        user_id,
+        subject,
+        content,
+        regdate
+        from
+        qna
+        ORDER BY id DESC;
+    </select>
+
+
+
+
+    <insert id="save" flushCache="true" parameterType="com.lec.spring.domain.Qna"
+            useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO qna
+        (subject, content ,user_id)
+        VALUES
+        (#{subject}, #{content},#{user_id})
+
+    </insert>
+
+
+
+    <select id="findById" resultType="com.lec.spring.domain.Qna">
+        SELECT
+        id,
+        user_id,
+        subject,
+        content,
+        regdate
+        from
+        qna
+        WHERE
+        id=#{id}
+    </select>
+
+
+
+    <update id="update" flushCache="true"
+            parameterType="com.lec.spring.domain.Qna">
+        UPDATE qna
+        SET subject=#{subject}, content=#{content}
+        WHERE id=#{id}
+    </update>
+
+
+    <delete id="delete" flushCache="true"
+            parameterType="com.lec.spring.domain.Qna">
+        DELETE FROM qna
+        WHERE id=#{id}
+    </delete>
+
+
+
+
+<!--페이징-->
+
+
+
+
+
+
+
+
+
+    <select id="selectFromRow" resultType="com.lec.spring.domain.Qna">
+        SELECT
+        id,
+        user_id,
+        subject,
+        content,
+        regdate
+        from
+        qna
+        ORDER BY id DESC
+        LIMIT #{param1},#{param2}
+    </select>
+
+    <select id="countAll" resultType="int">
+    SELECT COUNT(*) FROM qna
+    </select>
+
+
+
+</mapper>

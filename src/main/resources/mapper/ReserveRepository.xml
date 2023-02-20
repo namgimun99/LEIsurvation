@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.lec.spring.repository.ReserveRepository">
+
+    <insert id="save" flushCache="true" parameterType="com.lec.spring.domain.ReserveWrite"
+    useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO reservation
+        (name, phone ,user_id,leisure_id,date)
+        VALUES
+        (#{name}, #{phone},#{user_id},#{leisure_id},#{date})
+
+    </insert>
+
+
+
+
+    <select id="findLeis" resultType="com.lec.spring.domain.LeisureWrite">
+        SELECT
+        id,
+        name,
+        address,
+        price,
+        company_id
+        FROM
+        leisure
+        WHERE
+        id=#{id};
+
+    </select>
+
+
+
+    <delete id="delete" flushCache="true"
+            parameterType="com.lec.spring.domain.ReserveWrite">
+        DELETE FROM reservation
+        WHERE id=#{id}
+    </delete>
+
+    <update id="update" flushCache="true"
+            parameterType="com.lec.spring.domain.ReserveWrite">
+        UPDATE reservation
+        SET name=#{name}, date=#{date}, phone=#{phone}
+        WHERE id=#{id}
+    </update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <sql id="SELECT_BASE">
+        SELECT
+        d.name "d_name",
+        d.phone "d_phone",
+        d.date "d_date",
+        d.regdate "d_regdate",
+        d.id "d_id",
+        d.user_id "d_user_id",
+        d.leisure_id "d_leisure_id",
+        s.id "s_id",
+        s.name "s_name",
+        s.price "s_price",
+        s.address "s_address"
+        FROM
+        reservation d, leisure s
+        WHERE
+        d.leisure_id = s.id
+    </sql>
+
+
+    <resultMap id="mapLeisure" type="com.lec.spring.domain.LeisureWrite">
+        <result column="s_name" property="name"/>
+        <result column="s_price" property="price"/>
+        <result column="s_address" property="address"/>
+    </resultMap>
+
+
+    <resultMap id="mapWrite" type="com.lec.spring.domain.ReserveWrite">
+        <result column="d_name" property="name"/>
+        <result column="d_phone" property="phone"/>
+        <result column="d_date" property="date"/>
+        <result column="d_regdate" property="regdate"/>
+        <result column="d_id" property="id"/>
+        <result column="d_user_id" property="user_id"/>
+        <result column="d_leisure_id" property="leisure_id"/>
+        <collection property="leisureWrite" resultMap="mapLeisure"/>
+    </resultMap>
+
+    <select id="findById" resultMap="mapWrite">
+        <include refid="SELECT_BASE"/>
+        AND d.id=#{id}
+    </select>
+
+    <select id="findAll"  resultMap="mapWrite">
+        <include refid="SELECT_BASE"/>
+        AND d.user_id=#{user_id}
+    </select>
+
+
+</mapper>

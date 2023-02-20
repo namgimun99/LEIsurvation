@@ -1,13 +1,75 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
-    <title>qna_list</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
+    <script src="https://kit.fontawesome.com/251fa0adfc.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <script th:src="@{/js/list.js}"></script>
+  <title>리스트</title>
 </head>
 <body>
+
+<h2>목록입니다.</h2>
+<hr>
+<div class="mb-3 mt-3 clearfix">
+  <span class="float-start me-2">총 [[${cnt}]]개</span>
+  <span class="float-start">page [[${page}]]/[[${totalPage}]]</span>
+  <span class="float-end">
+            <form name="frmPageRows">
+                <input type="hidden" name="page" th:value="${page}">   <!--여기서 page parameter 가 넘어감. 아래 select 문은 제외하고 하면 될듯-->
+                <select class="form-select" name="pageRows">
+                    <option value="10" th:selected="${pageRows==10}">10</option>
+                    <option value="15" th:selected="${pageRows==15}">15</option>
+                    <option value="20" th:selected="${pageRows==20}">20</option>
+                    <option value="50" th:selected="${pageRows==50}">50</option>
+                </select>
+            </form>
+        </span>
+</div>
+
+
+<table class="table table-hover">
+  <thead class="table-success">
+  <tr>
+    <th>#</th>
+    <th>제목</th>
+    <th>등록자</th>
+    <th>등록일</th>
+  </tr>
+
+  </thead>
+  <tbody>
+
+  <tr th:each="dto:${list}" >
+    <!--이 위에는 그냥 목록에서 id 타고 detail 로 들어가는 것 -->
+    <td>[[${dto.id}]]</td>
+    <td><a th:href="@{/qna/detail(id=${dto.id})}">[[${dto.subject}]]</a></td>
+    <td>[[${dto.user_id}]]</td>
+    <td>[[${#temporals.format(dto.regdate, 'yyyy-MM-dd HH:mm:ss')}]]</td>
+
+
+
+  </tr>
+
+  </tbody>
+</table>
+
+</div>
+<div class="row">
+  <div class="col-12">
+    <a class="btn btn-outline-dark" th:href="@{/qna/write}">작성</a>
+  </div>
+</div>
+
+<!-- pagination -->
+<th:block th:insert="~{qna/pagination::pagination}"></th:block>
+<!-- pagination -->
 
 </body>
 </html>
