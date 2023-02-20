@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lec.spring.repository.ReviewRepository">
+    <insert id="save" flushCache="true" parameterType="com.lec.spring.domain.Review"
+        useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO review
+            (subject, content, star, reservation_id, user_id, leisure_id)
+        VALUES
+            (#{subject}, #{content}, #{star}, #{reservation_id}, #{user_id}, #{leisure_id})
+    </insert>
+    
+    <select id="findById" resultType="com.lec.spring.domain.Review">
+        SELECT
+            id, reservation_id, user_id, leisure_id, subject, content, regdate, star
+        FROM
+            review
+        WHERE
+            id = #{id}
+    </select>
+
+    <select id="findAll" resultType="com.lec.spring.domain.Review">
+        SELECT
+            id, reservation_id, user_id, leisure_id, subject, content, regdate, star
+        FROM
+            review
+        ORDER BY id DESC
+    </select>
+
+    <update id="update" flushCache="true" parameterType="com.lec.spring.domain.Review">
+        UPDATE review
+        SET subject = #{subject}, content= #{content}, star = #{star}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete" flushCache="true" parameterType="com.lec.spring.domain.Review">
+        DELETE FROM review WHERE id = #{id}
+    </delete>
+</mapper>
