@@ -29,7 +29,7 @@ INSERT INTO authority (name) VALUES
 	('ROLE_USER'), ('ROLE_ADMIN'), ('ROLE_COMPANY')
 ;
 -- 샘플 사용자
-INSERT INTO user (u_id, password) VALUES
+INSERT INTO USER (u_id, password) VALUES
 ('USER1', '1234'),
 ('USER2', '1234'),
 ('COMPANY1', '1234'),
