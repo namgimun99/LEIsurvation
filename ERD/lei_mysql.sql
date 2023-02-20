@@ -284,3 +284,13 @@ ALTER TABLE user_authorities
 
 
 
+SELECT
+        id,
+        user_id,
+        subject,
+        content,
+        regdate
+        FROM
+        qna
+        ORDER BY id DESC;
+        
