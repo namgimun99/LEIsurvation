@@ -8,9 +8,9 @@
 			"save-password": true,
 			"configuration": {
 				"host": "localhost",
-				"port": "3304",
+				"port": "3306",
 				"database": "leidb",
-				"url": "jdbc:mysql://localhost:3304/leidb",
+				"url": "jdbc:mysql://localhost:3306/leidb",
 				"configurationType": "MANUAL",
 				"home": "C:\\Program Files\\MySQL\\MySQL Server 8.0",
 				"type": "dev",
@@ -20,8 +20,7 @@
 					"enabledTLSProtocols": "TLSv1,TLSv1.1,TLSv1.2",
 					"allowPublicKeyRetrieval": "TRUE"
 				},
-				"auth-model": "native",
-				"handlers": {}
+				"auth-model": "native"
 			}
 		}
 	},

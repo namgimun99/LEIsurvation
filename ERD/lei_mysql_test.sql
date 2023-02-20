@@ -39,3 +39,5 @@ FROM review_comment c, USER u
 WHERE c.user_id = u.id AND c.review_id = 4
 ORDER BY c.id DESC
 ;
+SELECT * FROM leisure_file  ORDER BY id DESC;
+

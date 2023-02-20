@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lec.spring.repository.leisure.LeisureFileRepository">
+    
+    <insert id="insert" flushCache="true" parameterType="arraylist">
+
+        INSERT INTO leisure_file(SOURCE, file, leisure_id)
+        VALUES
+            <foreach collection="param1" item="e" separator=",">
+                    (#{e.source},#{e.file},#{param2})
+            </foreach>
+    </insert>
+
+    <insert id="save" flushCache="true" parameterType="com.lec.spring.domain.leisure.LeisureFileDTO">
+        INSERT INTO leisure_file(SOURCE, file, leisure_id)
+        VALUES
+            (#{e.source},#{e.file},#{param2})
+    </insert>
+
+    <sql id = "selectfile">
+        SELECT id, source, file, leisure_id
+        FROM leisre_file
+    </sql>
+    
+    <select id="findBywrite" resultType="com.lec.spring.domain.leisure.LeisureFileDTO">
+        <include refid="selectfile"/>
+        WHERE
+            leisure_id = #{param1}
+        ORDER BY id ASC
+    </select>
+
+    <select id="findByid" resultType="com.lec.spring.domain.leisure.LeisureFileDTO">
+        <include refid="selectfile"/>
+        WHERE
+        id = #{id}
+    </select>
+
+
+
+
+
+</mapper>
