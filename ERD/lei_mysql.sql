@@ -95,8 +95,7 @@ CREATE TABLE reservation
 	regdate datetime DEFAULT now(),
 	phone int NOT NULL,
 	date int(8) NOT NULL,
-	PRIMARY KEY (id),
-	UNIQUE (phone)
+	PRIMARY KEY (id)
 );
 
 
@@ -138,11 +137,11 @@ CREATE TABLE review_file
 CREATE TABLE user
 (
 	id int NOT NULL AUTO_INCREMENT,
-	u_id varchar(80) NOT NULL,
+	username varchar(80) NOT NULL,
 	password varchar(100) NOT NULL,
 	regdate datetime DEFAULT now(),
 	PRIMARY KEY (id),
-	UNIQUE (u_id)
+	UNIQUE (username)
 );
 
 
