@@ -15,7 +15,7 @@ SELECT * FROM user ORDER BY id DESC;
 -- 특정 id 의 사용자 조회
 SELECT
 	id
-	, u_id
+	, username 
 	, password
 	, regdate
 FROM user

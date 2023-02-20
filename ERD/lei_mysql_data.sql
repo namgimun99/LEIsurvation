@@ -29,11 +29,11 @@ INSERT INTO authority (name) VALUES
 	('ROLE_USER'), ('ROLE_ADMIN'), ('ROLE_COMPANY')
 ;
 -- 샘플 사용자
-INSERT INTO USER (u_id, password) VALUES
-('USER1', '1234'),
-('USER2', '1234'),
-('COMPANY1', '1234'),
-('ADMIN1', '1234')
+INSERT INTO user (username, password) VALUES
+('USER1', '$2a$10$hABC58vfJBNqgP/TEmrPNO7cwqk3p9XWbNTP85s52V6J8jLlM10d2'),
+('USER2', '$2a$10$KqgWls.F6p4iQDAPbsdYUOFUUied8mWWeBwGOCxr2p58cSs4LEl1S'),
+('COMPANY1', '$2a$10$GuZcfP.eUQb8L6FDmwuvSuTIu7BH06ZhOqrbczkkMKqNIDLbPLcia'),
+('ADMIN1', '$2a$10$sIKBK..KyfJ5rZKbu8/VAuTt1U9BlidvfMU6XmPPqzsX6vS6OEqgm')
 ;
 -- 샘플 사용자-권한
 INSERT INTO user_authorities VALUES
