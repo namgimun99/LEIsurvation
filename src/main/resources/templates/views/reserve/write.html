@@ -29,7 +29,7 @@
 <br>
 <hr>
 
-<div id="write" th:with="user=${#authentication.getPrincipal().getUser()}">
+<div id="write" th:with="user=${#authentication.getPrincipal().getUser()}" style="text-align:center">
     <form th:action="@{/reserve/write}" method="post">
         <div style="margin-bottom:30px">
             <label for="lename">레저 이름</label>
