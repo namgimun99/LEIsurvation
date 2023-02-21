@@ -21,7 +21,7 @@
       padding:10px 20px;
     }
     td:last-child{
-      width:1500px;
+      width:700px;
     }
     div{
       padding:50px
@@ -29,6 +29,9 @@
     h1{
     width:400px;
     }
+
+
+
   </style>
 </head>
 <body>
@@ -40,16 +43,7 @@
 </hr>
 <table class="table table-hover">
   <thead class="table-success">
-<!--  <tr>-->
-<!--    <th>주소</th>-->
-<!--    <th>이름</th>-->
-<!--    <th>가격</th>-->
-<!--    <th>날짜</th>-->
-<!--    <th>성함</th>-->
-<!--    <th>예약수정</th>-->
-<!--    <th>후기작성</th>-->
 
-<!--  </tr>-->
 
   <div style="background-color:gray">
     <h3>프로필</h3>
@@ -60,27 +54,28 @@
   </thead>
   <tbody>
 
-  <table th:each="dto:${list}">
+  <table th:each="dto:${list}" style="text-align:center">
     <!--이 위에는 그냥 목록에서 id 타고 detail 로 들어가는 것 -->
 
+    <tr>
+      <th rowspan="3">제목</th>
+      <th>이름</th>
+      <td>[[${dto.leisureWrite.name}]]</td>
+      <td rowspan="3" style="width:150px"><a class="btn btn-outline-dark" th:href="@{/reserve/detail(id=${dto.id})}">예약수정</a></td>
+      <td rowspan="3" style="width:150px"><a class="btn btn-outline-dark" th:href="@{/review/write(leisure_id=${dto.leisure_id})}">후기작성</a></td>
+    </tr>
 
+    <tr>
+      <th>가격</th>
+      <td>[[${dto.leisureWrite.price}]]</td>
+    </tr>
 
-      <tr>
-        <th rowspan="3">제목</th>
-        <th>이름</th>
-        <td>[[${dto.leisureWrite.name}]]</td>
-      </tr>
-      <tr>
-        <th>가격</th>
-        <td>[[${dto.leisureWrite.price}]]</td>
-      </tr>
-      <tr>
-        <th>주소</th>
-        <td>[[${dto.leisureWrite.address}]]</td>
-            <td><a class="btn btn-outline-dark" th:href="@{/reserve/detail(id=${dto.id})}">예약수정</a></td>
-            <td><a class="btn btn-outline-dark" th:href="@{/review/write(leisure_id=${dto.leisure_id})}">후기작성</a></td>
+    <tr>
+      <th>주소</th>
+      <td>[[${dto.leisureWrite.address}]]</td>
 
-      </tr>
+    </tr>
+
     <br>
 
 
