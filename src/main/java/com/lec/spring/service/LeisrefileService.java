@@ -1,7 +1,7 @@
-package com.lec.spring.service.leisure;
+package com.lec.spring.service;
 
-import com.lec.spring.domain.leisure.LeisureFileDTO;
-import com.lec.spring.repository.leisure.LeisureFileRepository;
+import com.lec.spring.domain.LeisureFileDTO;
+import com.lec.spring.repository.LeisureFileRepository;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 

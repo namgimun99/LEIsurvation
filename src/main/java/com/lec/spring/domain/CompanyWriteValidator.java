@@ -1,4 +1,4 @@
-package com.lec.spring.domain.company;
+package com.lec.spring.domain;
 
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;

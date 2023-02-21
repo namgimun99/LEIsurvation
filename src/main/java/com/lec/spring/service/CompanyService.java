@@ -1,8 +1,8 @@
-package com.lec.spring.service.company;
+package com.lec.spring.service;
 
 
-import com.lec.spring.domain.company.CompanyWrite;
-import com.lec.spring.repository.company.CompanyWriteRepository;
+import com.lec.spring.domain.CompanyWrite;
+import com.lec.spring.repository.CompanyWriteRepository;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

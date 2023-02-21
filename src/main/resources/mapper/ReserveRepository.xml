@@ -18,7 +18,7 @@
 
 
 
-    <select id="findLeis" resultType="com.lec.spring.domain.leisure.LeisureWrite">
+    <select id="findLeis" resultType="com.lec.spring.domain.LeisureWrite">
         SELECT
         id,
         name,
@@ -82,7 +82,7 @@
     </sql>
 
 
-    <resultMap id="mapLeisure" type="com.lec.spring.domain.leisure.LeisureWrite">
+    <resultMap id="mapLeisure" type="com.lec.spring.domain.LeisureWrite">
         <result column="s_name" property="name"/>
         <result column="s_price" property="price"/>
         <result column="s_address" property="address"/>

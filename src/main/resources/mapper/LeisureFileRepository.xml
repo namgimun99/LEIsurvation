@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.lec.spring.repository.leisure.LeisureFileRepository">
+<mapper namespace="com.lec.spring.repository.LeisureFileRepository">
     
     <insert id="insert" flushCache="true" parameterType="arraylist">
 
@@ -14,7 +14,7 @@
             </foreach>
     </insert>
 
-    <insert id="save" flushCache="true" parameterType="com.lec.spring.domain.leisure.LeisureFileDTO">
+    <insert id="save" flushCache="true" parameterType="com.lec.spring.domain.LeisureFileDTO">
         INSERT INTO leisure_file(SOURCE, file, leisure_id)
         VALUES
             (#{e.source},#{e.file},#{param2})
@@ -25,14 +25,14 @@
         FROM leisre_file
     </sql>
     
-    <select id="findBywrite" resultType="com.lec.spring.domain.leisure.LeisureFileDTO">
+    <select id="findBywrite" resultType="com.lec.spring.domain.LeisureFileDTO">
         <include refid="selectfile"/>
         WHERE
             leisure_id = #{param1}
         ORDER BY id ASC
     </select>
 
-    <select id="findByid" resultType="com.lec.spring.domain.leisure.LeisureFileDTO">
+    <select id="findByid" resultType="com.lec.spring.domain.LeisureFileDTO">
         <include refid="selectfile"/>
         WHERE
         id = #{id}

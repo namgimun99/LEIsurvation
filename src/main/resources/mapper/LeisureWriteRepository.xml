@@ -3,9 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.lec.spring.repository.leisure.LeisureWriteRepository">
+<mapper namespace="com.lec.spring.repository.LeisureWriteRepository">
 
-    <insert id="save" flushCache="true" parameterType="com.lec.spring.domain.leisure.LeisureWrite"
+    <insert id="save" flushCache="true" parameterType="com.lec.spring.domain.LeisureWrite"
             useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         INSERT INTO leisure
         (company_id, name, price, content, address)
@@ -26,18 +26,18 @@
             leisure
     </sql>
 
-    <select id="findById" resultType="com.lec.spring.domain.leisure.LeisureWrite">
+    <select id="findById" resultType="com.lec.spring.domain.LeisureWrite">
         <include refid="Base"/>
         WHERE
             id = #{id}
     </select>
 
-    <select id="findprice" resultType="com.lec.spring.domain.leisure.LeisureWrite">
+    <select id="findprice" resultType="com.lec.spring.domain.LeisureWrite">
         <include refid="Base"/>
         ORDER BY price ASC
     </select>
 
-    <select id="findstar" resultType="com.lec.spring.domain.leisure.LeisureWrite">
+    <select id="findstar" resultType="com.lec.spring.domain.LeisureWrite">
         <include refid="Base"/>
         ORDER BY id DESC
     </select>

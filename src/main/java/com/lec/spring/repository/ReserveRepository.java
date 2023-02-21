@@ -2,7 +2,7 @@ package com.lec.spring.repository;
 
 
 import com.lec.spring.domain.ReserveWrite;
-import com.lec.spring.domain.leisure.LeisureWrite;
+import com.lec.spring.domain.LeisureWrite;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

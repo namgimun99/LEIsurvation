@@ -1,6 +1,5 @@
 package com.lec.spring.domain;
 
-import com.lec.spring.domain.leisure.LeisureWrite;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

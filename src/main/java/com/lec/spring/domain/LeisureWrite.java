@@ -1,4 +1,4 @@
-package com.lec.spring.domain.leisure;
+package com.lec.spring.domain;
 
 import lombok.*;
 

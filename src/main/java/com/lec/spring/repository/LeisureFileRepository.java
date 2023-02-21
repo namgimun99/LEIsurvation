@@ -1,6 +1,6 @@
-package com.lec.spring.repository.leisure;
+package com.lec.spring.repository;
 
-import com.lec.spring.domain.leisure.LeisureFileDTO;
+import com.lec.spring.domain.LeisureFileDTO;
 
 import java.util.List;
 import java.util.Map;

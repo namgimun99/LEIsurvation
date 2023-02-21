@@ -1,6 +1,6 @@
-package com.lec.spring.repository.leisure;
+package com.lec.spring.repository;
 
-import com.lec.spring.domain.leisure.LeisureWrite;
+import com.lec.spring.domain.LeisureWrite;
 
 import java.util.List;
 

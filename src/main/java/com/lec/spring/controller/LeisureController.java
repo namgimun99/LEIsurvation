@@ -1,8 +1,8 @@
-package com.lec.spring.controller.leisure;
+package com.lec.spring.controller;
 
-import com.lec.spring.domain.leisure.LeisureWrite;
-import com.lec.spring.domain.leisure.LeisureWriteValidator;
-import com.lec.spring.service.leisure.LeisureService;
+import com.lec.spring.domain.LeisureWrite;
+import com.lec.spring.domain.LeisureWriteValidator;
+import com.lec.spring.service.LeisureService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

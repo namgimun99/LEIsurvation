@@ -1,4 +1,4 @@
-package com.lec.spring.domain.company;
+package com.lec.spring.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

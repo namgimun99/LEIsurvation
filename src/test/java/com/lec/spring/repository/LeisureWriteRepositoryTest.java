@@ -1,6 +1,5 @@
 package com.lec.spring.repository;
 
-import com.lec.spring.repository.leisure.LeisureWriteRepository;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

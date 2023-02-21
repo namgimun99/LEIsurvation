@@ -1,4 +1,4 @@
-package com.lec.spring.config.Leisure;
+package com.lec.spring.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;

@@ -2,7 +2,7 @@ package com.lec.spring.service;
 
 
 import com.lec.spring.domain.ReserveWrite;
-import com.lec.spring.domain.leisure.LeisureWrite;
+import com.lec.spring.domain.LeisureWrite;
 import com.lec.spring.repository.ReserveRepository;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;

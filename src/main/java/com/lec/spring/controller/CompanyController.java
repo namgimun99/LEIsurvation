@@ -1,9 +1,9 @@
-package com.lec.spring.controller.company;
+package com.lec.spring.controller;
 
 
-import com.lec.spring.domain.company.CompanyWrite;
-import com.lec.spring.domain.company.CompanyWriteValidator;
-import com.lec.spring.service.company.CompanyService;
+import com.lec.spring.domain.CompanyWrite;
+import com.lec.spring.domain.CompanyWriteValidator;
+import com.lec.spring.service.CompanyService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
