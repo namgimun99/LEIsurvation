@@ -6,8 +6,8 @@
     alert("해당 정보가 삭제되거나 없습니다");
     history.back();
 </script>
-<th:block th:if="${list} and ${#lists.size(list) > 0}" th:with="dto=${list[0]}">
-<!--/*  th:with="user=${#authentication.getPrincipal().getUser() 나중에 위에 넣어야함 ****[[${user.id}]] 이게 member_id 값이다!!!!!*** 이거는 로그인 된 사용자의 u_id를 알려준다. 정보는 밑으로.. */-->
+<th:block th:if="${list} and ${#lists.size(list) > 0}" th:with="dto=${list[0]}" >
+<!--/*  th:with="user=${#authentication.getPrincipal().getUser()" 나중에 위에 넣어야함 ****[[${user.id}]] 이게 member_id 값이다!!!!!*** 이거는 로그인 된 사용자의 u_id를 알려준다. 정보는 밑으로.. */-->
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +29,7 @@
 <br>
 <hr>
 
-<div id="write">
+<div id="write" th:with="user=${#authentication.getPrincipal().getUser()}" style="text-align:center">
     <form th:action="@{/reserve/write}" method="post">
         <div style="margin-bottom:30px">
             <label for="lename">레저 이름</label>
@@ -61,12 +61,9 @@
         </div>
 
 
-        <div style="margin-bottom:30px">   <!--/*여기도 아래처럼 hidden 타입으로 해서 user_id(user) 를 넣어야함 th:value 는 "${user.id}", name 은 user_id 로..*/-->
-            <label for="zzz">이름</label>
-            <input type="text" id="zzz" placeholder="로그인되어 있는 user_id를 넣어야함" name="user_id" required>
-<!-- 현재 로그인되어있는 user_id 를 받아와서 아래와 같이 hidden 타입으로 넣는다.-->
-        </div>
-            <input type="hidden" id="xxx" placeholder="쿠폰 이름을 입력하세요" name="leisure_id" th:value="${dto.id}" required>
+            <input type="hidden"  name="user_id"  th:value="${user.id}" required>
+
+            <input type="hidden"  name="leisure_id" th:value="${dto.id}" required>
 
 
         <button type="submit" class="btn">예약완료</button>
