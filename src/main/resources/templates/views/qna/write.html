@@ -17,7 +17,7 @@
 </head>
 
 <body>
-<div class="container mt-3">
+<div class="container mt-3" th:with="user=${#authentication.getPrincipal().getUser()}">
   <h2>작성</h2>
   <hr>
 
@@ -40,11 +40,8 @@
       <label for="content">내용:</label>
       <textarea class="form-control" rows="5" id="content" placeholder="내용을 입력하세요" name="content"></textarea>
     </div>
-    <div style="margin-bottom:30px">   <!--/*여기도 아래처럼 hidden 타입으로 해서 user_id(user) 를 넣어야함 th:value 는 "${user.id}", name 은 user_id 로..*/-->
-      <label for="zzz">이름</label>
-      <input type="text" id="zzz" placeholder="로그인되어 있는 user_id를 넣어야함" name="user_id" required>
-      <!-- 현재 로그인되어있는 user_id 를 받아와서 아래와 같이 hidden 타입으로 넣는다.-->
-    </div>
+
+    <input type="hidden"  name="user_id"  th:value="${user.id}" required>
 
     <button type="submit" class="btn btn-outline-dark">작성완료</button>
     <a class="btn btn-outline-dark" th:href="@{/qna/list}">목록</a>
