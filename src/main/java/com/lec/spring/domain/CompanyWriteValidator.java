@@ -10,7 +10,6 @@ public class CompanyWriteValidator implements Validator {
         boolean result = CompanyWrite.class.isAssignableFrom(clazz);
         return result;
     }
-
     @Override
     public void validate(Object target, Errors errors) {
         CompanyWrite companyWrite = (CompanyWrite) target;

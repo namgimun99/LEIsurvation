@@ -13,4 +13,16 @@
         (#{user_id}, #{name}, #{address}, #{companyname})
     </insert>
 
+    <select id="findById" resultType="com.lec.spring.domain.CompanyWrite">
+       Select
+        id,
+        user_id,
+        name,
+        address,
+        companyname
+        FROM
+        company
+        WHERE
+        id = #{id}
+    </select>
 </mapper>

@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CompanyWrite {
     private long id;
-    private long user_id;
     private String name;
     private String address;
     private String companyname;
+    private int user_id;
 }

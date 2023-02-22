@@ -56,7 +56,7 @@
       <div id = dbutton>
       <!-- 하단 링크 -->
       <a class="btn btn-outline-dark" th:href="@{/leisure/listprice}">목록</a>
-      <a class="btn btn-outline-dark" th:href="@{/reserve/write}">예약</a>
+      <a class="btn btn-outline-dark" th:href="@{/reserve/write(id=${dto.id})}">예약</a>
       <button type="button" class="btn btn-outline-dark" id="BtnDel">삭제</button>
       </div>
 

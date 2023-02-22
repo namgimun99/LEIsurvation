@@ -36,6 +36,8 @@ public class CompanyController {
                           Model model,
                           RedirectAttributes redirectAttributes) {
 
+        int num1=companyWrite.getUser_id();
+
         if(result.hasErrors()){
             redirectAttributes.addFlashAttribute("user_id", companyWrite.getUser_id());
             redirectAttributes.addFlashAttribute("name", companyWrite.getName());
@@ -48,7 +50,7 @@ public class CompanyController {
                 redirectAttributes.addFlashAttribute("error", err.getCode());
                 break;
             }
-            return "redirect:/company/write";
+            return "redirect:/company/write?id="+num1;
         }
         model.addAttribute("result", companyService.companyWrite(companyWrite));
         model.addAttribute("dto", companyWrite);
@@ -58,5 +60,10 @@ public class CompanyController {
     @InitBinder
     public void initBinder(WebDataBinder binder){
         binder.setValidator(new CompanyWriteValidator());
+    }
+
+    @GetMapping("/detail")
+    public void detail(long id, Model model){
+        model.addAttribute("list", companyService.companyDetail(id));
     }
 }
