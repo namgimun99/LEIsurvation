@@ -25,7 +25,9 @@ public class LeisureController {
     private LeisureService leisureService;
 
     @GetMapping("/write")
-    public void write(){}
+    public void write(Long company_id, Model model){
+        model.addAttribute("company_id", company_id);
+    }
 
     @PostMapping("/write")
     public String writeOK(
@@ -73,6 +75,11 @@ public class LeisureController {
     @GetMapping("/listprice")
     public void listprice(Model model){
         model.addAttribute("listprice", leisureService.listprice());
+    }
+
+    public String deleteOk(long id, Model model) {
+        model.addAttribute("result", leisureService.deleteById(id));
+        return "leisure/delete";
     }
 }
 

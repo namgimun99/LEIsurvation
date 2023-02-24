@@ -10,10 +10,10 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class LeisureWrite {
-    private long id;
-    private long company_id;
+    private Long id;
+    private String company_id;
     private String name;
-    private long price;
+    private Long price;
     private String content;
     private String address;
     private double avgstar;
@@ -21,5 +21,7 @@ public class LeisureWrite {
     @ToString.Exclude
     @Builder.Default
     private List<LeisureFileDTO> files = new ArrayList<>();
+
+    private CompanyWrite companyWrite;
 
 }

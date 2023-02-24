@@ -1,11 +1,13 @@
 package com.lec.spring.controller;
 
 
+import com.lec.spring.config.PrincipalDetails;
 import com.lec.spring.domain.CompanyWrite;
 import com.lec.spring.domain.CompanyWriteValidator;
 import com.lec.spring.service.CompanyService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,10 +38,10 @@ public class CompanyController {
                           Model model,
                           RedirectAttributes redirectAttributes) {
 
-        int num1=companyWrite.getUser_id();
+        Long userId = ((PrincipalDetails)(SecurityContextHolder.getContext().getAuthentication().getPrincipal())).getUser().getId();
+        companyWrite.setUser_id(String.valueOf(userId));
 
         if(result.hasErrors()){
-            redirectAttributes.addFlashAttribute("user_id", companyWrite.getUser_id());
             redirectAttributes.addFlashAttribute("name", companyWrite.getName());
             redirectAttributes.addFlashAttribute("address", companyWrite.getAddress());
             redirectAttributes.addFlashAttribute("companyname", companyWrite.getCompanyname());
@@ -50,7 +52,7 @@ public class CompanyController {
                 redirectAttributes.addFlashAttribute("error", err.getCode());
                 break;
             }
-            return "redirect:/company/write?id="+num1;
+            return "redirect:/company/write";
         }
         model.addAttribute("result", companyService.companyWrite(companyWrite));
         model.addAttribute("dto", companyWrite);
@@ -62,7 +64,7 @@ public class CompanyController {
         binder.setValidator(new CompanyWriteValidator());
     }
 
-    @GetMapping("/detail")
+    @GetMapping("/mypage")
     public void detail(long id, Model model){
         model.addAttribute("list", companyService.companyDetail(id));
     }

@@ -12,4 +12,6 @@ public interface LeisureWriteRepository {
     List<LeisureWrite> findprice();
 
     List<LeisureWrite> findstar();
+
+    int delete(LeisureWrite leisureWrite);
 }

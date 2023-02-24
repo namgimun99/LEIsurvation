@@ -10,9 +10,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class CompanyWrite {
-    private long id;
+    private Long id;
     private String name;
     private String address;
     private String companyname;
-    private int user_id;
+
+
+    private String user_id;
+
 }

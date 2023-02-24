@@ -3,6 +3,7 @@ package com.lec.spring.service;
 
 import com.lec.spring.domain.LeisureFileDTO;
 import com.lec.spring.domain.LeisureWrite;
+import com.lec.spring.domain.Review;
 import com.lec.spring.repository.LeisureFileRepository;
 import com.lec.spring.repository.LeisureWriteRepository;
 import com.lec.spring.util.U;
@@ -119,5 +120,15 @@ public class LeisureService {
 
     public List<LeisureWrite> liststar(){
         return leisureWriteRepository.findstar();
+    }
+
+    public int deleteById(long id){
+        int result = 0;
+
+        LeisureWrite leisureWrite = leisureWriteRepository.findById(id);
+        if(leisureWrite != null){
+            result = leisureWriteRepository.delete(leisureWrite);
+        }
+        return result;
     }
 }

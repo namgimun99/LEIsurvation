@@ -41,4 +41,8 @@
         <include refid="Base"/>
         ORDER BY id DESC
     </select>
+
+    <delete id="delete" flushCache="true" parameterType="com.lec.spring.domain.LeisureWrite">
+        DELETE FROM leisure WHERE id = #{id}
+    </delete>
 </mapper>

@@ -34,9 +34,5 @@ public class LeisureWriteValidator implements Validator {
         if(content == null || content.trim().isEmpty()){
             errors.rejectValue("content","레져 소개를 입력해주세요");
         }
-
-
-
-
     }
 }

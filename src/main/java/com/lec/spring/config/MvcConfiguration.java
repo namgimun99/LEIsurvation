@@ -12,8 +12,8 @@ public class MvcConfiguration {
 
         @Override
         public void addResourceHandlers(ResourceHandlerRegistry registry) {
-            registry.addResourceHandler("/leisureupload/**")
-                    .addResourceLocations("file:leisureupload/");
+            registry.addResourceHandler("/upload/**")
+                    .addResourceLocations("file:upload/");
 
         }
 
