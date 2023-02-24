@@ -1,10 +1,13 @@
 package com.lec.spring.controller;
 
+import com.lec.spring.config.PrincipalDetails;
 import com.lec.spring.domain.Review;
 import com.lec.spring.domain.ReviewValidator;
 import com.lec.spring.service.ReviewService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,7 +39,10 @@ public class ReviewController {
 
 
     @GetMapping("/write")
-    public void write() {
+    public void write(Long reservation_id, Model model) {
+        List<Review> reviewList = reviewService.RLlist(reservation_id);
+        model.addAttribute("reservation_id", reservation_id);
+        model.addAttribute("reviewList", reviewList);
     }
 
     @PostMapping("/write")
@@ -44,29 +50,28 @@ public class ReviewController {
                           BindingResult result,
                           Model model,
                           RedirectAttributes redirectAttrs) {
-        // validation 에러가 있었다면
-        if(result.hasErrors()){
-            // test용
-            redirectAttrs.addFlashAttribute("reservation_id", review.getReservation_id());
-            redirectAttrs.addFlashAttribute("user_id", review.getUser_id());
-            redirectAttrs.addFlashAttribute("leisure_id", review.getLeisure_id());
 
+        Long userId = ((PrincipalDetails)(SecurityContextHolder.getContext().getAuthentication().getPrincipal())).getUser().getId();
+        review.setUser_id(String.valueOf(userId));
+
+        // validation
+        if(result.hasErrors()){
+            redirectAttrs.addFlashAttribute("reservation_id", review.getReservation_id());
             redirectAttrs.addFlashAttribute("subject", review.getSubject());
-            redirectAttrs.addFlashAttribute("cp_sno", review.getContent());
+            redirectAttrs.addFlashAttribute("content", review.getContent());
 
             List<FieldError> errList = result.getFieldErrors();
             for(FieldError err: errList){
                 redirectAttrs.addFlashAttribute("error", err.getCode());
                 break;
             }
-            return "redirect:/review/write";
+            return "redirect:/review/write?reservation_id=" + review.getReservation_id();
+
         }
 
         model.addAttribute("result", reviewService.review(review)); //dml
-        model.addAttribute("review", review); // id값
-        reviewService.review(review);
-        // TODO ReserveRepository 이용해서
-        //  write comment 참고하여 review/write
+        model.addAttribute("reviewDto", review); // id값
+
         return "review/writeOk";
     }
 
@@ -86,15 +91,12 @@ public class ReviewController {
                            BindingResult result,
                            Model model,
                            RedirectAttributes redirectAttrs) {
-        // validation 에러가 있었다면
+        // validation
         if(result.hasErrors()){
-            // test용
             redirectAttrs.addFlashAttribute("reservation_id", review.getReservation_id());
             redirectAttrs.addFlashAttribute("user_id", review.getUser_id());
-            redirectAttrs.addFlashAttribute("leisure_id", review.getLeisure_id());
-
             redirectAttrs.addFlashAttribute("subject", review.getSubject());
-            redirectAttrs.addFlashAttribute("cp_sno", review.getContent());
+            redirectAttrs.addFlashAttribute("content", review.getContent());
 
             List<FieldError> errList = result.getFieldErrors();
             for(FieldError err: errList){
@@ -106,6 +108,7 @@ public class ReviewController {
 
         model.addAttribute("result", reviewService.update(review));
         model.addAttribute("review", review);
+
         return "review/updateOk";
     }
 

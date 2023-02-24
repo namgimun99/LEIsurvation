@@ -24,7 +24,7 @@
     </head>
     <body>
         <!-- header -->
-<!--        <th:block th:insert="~{common/header::header}"></th:block>-->
+        <th:block th:insert="~{common/header::header}"></th:block>
     
         <div class="container mt-3">
           
@@ -38,48 +38,25 @@
 
             <form th:action="@{/review/update}" method="post" >
                 <input type="hidden" name="id" th:value="${review.id}"/>
-            <!-- TODO fk readonly -->
-                <!--/*
-              <div class="mb-3">
-                <th:block th:with="leisure=${leisure[0]}" th:if="${leisure} and ${#lists.size(leisure) > 0}">
-                  <input type="text" class="form-control" id="leisure-name" name="name" th:value="${leisure.name}" readonly>
-                </th:block>
-              </div>
-                <th:block th:with="reserve=${reserve[0]}" th:if="${reserve} and ${#lists.size(reserve) > 0}">
-                  <div class="mb-3">
-                      <input type="text" class="form-control" id="date" name="date" th:value="${reserve.date}" readonly>
-                  </div>
-                  <div class="mb-3">
-                      <input type="text" class="form-control" id="user-name" name="name" th:value="${reserve.name}" readonly>
-                  </div>
-                </th:block>
-                */-->
 
-                <!-- test 용-->
-                <div class="mb-3">
-                    <input type="text" class="form-control" id="reservation_id" name="reservation_id" placeholder="reservation_id" th:value="${review.reservation_id}" readonly>
-                </div>
-                <div class="mb-3">
-                    <input type="text" class="form-control" id="user_id" name="user_id" placeholder="user_id" th:value="${review.user_id}" readonly>
-                </div>
-                <div class="mb-3">
-                    <input type="text" class="form-control" id="leisure_id" name="leisure_id" placeholder="leisure_id" th:value="${review.leisure_id}" readonly>
-                </div>
+                <div class="mb-3">레져 이름 : [[${review.leisure_name}]]</div>
+                <div class="mb-3">예약 날짜 : [[${review.reserve_date}]]</div>
+                <div class="mb-3">작성자 : [[${review.reserve_name}]]</div>
 
               <div class="mb-3">
                 <input type="text" class="form-control" id="subject" name="subject" placeholder="제목을 입력하세요" th:value="${review.subject}">
               </div>
               <div class="mb-3">
-                <textarea class="form-control" rows="5" id="content" name="content" placeholder="내용을 입력하세요" th:value="${review.content}"></textarea>
+                <textarea class="form-control" rows="5" id="content" name="content" placeholder="내용을 입력하세요" th:text="${review.content}"></textarea>
               </div>
                 <div class="mb-3 w-25">
                     <input type="text" readonly class="form-control text-warning" value="★ 별점">
-                    <select name="star" id="star" class="form-select text-warning" th:value="${star}">
-                        <option th:selected="${star}==1">1</option>
-                        <option th:selected="${star}==2">2</option>
-                        <option th:selected="${star}==3">3</option>
-                        <option th:selected="${star}==4">4</option>
-                        <option th:selected="${star}==5">5</option>
+                    <select name="star" id="star" class="form-select text-warning" th:value="${review.star}">
+                        <option th:selected="${review.star}==1">1</option>
+                        <option th:selected="${review.star}==2">2</option>
+                        <option th:selected="${review.star}==3">3</option>
+                        <option th:selected="${review.star}==4">4</option>
+                        <option th:selected="${review.star}==5">5</option>
                     </select>
                 </div>
 

@@ -7,26 +7,43 @@
     <insert id="save" flushCache="true" parameterType="com.lec.spring.domain.Review"
         useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         INSERT INTO review
-            (subject, content, star, reservation_id, user_id, leisure_id)
+            (subject, content, star, reservation_id, user_id)
         VALUES
-            (#{subject}, #{content}, #{star}, #{reservation_id}, #{user_id}, #{leisure_id})
+            (#{subject}, #{content}, #{star}, #{reservation_id}, #{user_id})
     </insert>
     
     <select id="findById" resultType="com.lec.spring.domain.Review">
         SELECT
-            id, reservation_id, user_id, leisure_id, subject, content, regdate, star
+            r.id, reservation_id, r.user_id, subject, r.content, r.regdate, star, l.name AS leisure_name, rs.`date` AS reserve_date, rs.name AS reserve_name
         FROM
-            review
+            review r INNER JOIN reservation rs ON (r.reservation_id = rs.id)
+                     INNER JOIN leisure l ON (rs.leisure_id  = l.id)
+                     INNER JOIN `user` u ON (r.user_id = u.id)
         WHERE
-            id = #{id}
+            r.id = #{id}
     </select>
 
     <select id="findAll" resultType="com.lec.spring.domain.Review">
         SELECT
-            id, reservation_id, user_id, leisure_id, subject, content, regdate, star
+            r.id, reservation_id, r.user_id, subject, r.content, r.regdate, star, l.name AS leisure_name, rs.`date` AS reserve_date, rs.name AS reserve_name,
+            l.id AS leisure_id, lf.file AS min_leisure_file
         FROM
-            review
-        ORDER BY id DESC
+            review r INNER JOIN reservation rs ON (r.reservation_id = rs.id)
+                     INNER JOIN leisure l ON (rs.leisure_id  = l.id)
+                     INNER JOIN `user` u ON (r.user_id = u.id)
+                     INNER JOIN (SELECT leisure_id, min(id) AS leisure_file_id FROM leisure_file GROUP BY leisure_id) m_lf ON (l.id = m_lf.leisure_id)
+                     INNER JOIN leisure_file lf ON (lf.leisure_id = m_lf.leisure_id AND lf.id = m_lf.leisure_file_id)
+        ORDER BY r.id DESC
+    </select>
+
+    <select id ="findByRSId" resultType="com.lec.spring.domain.Review">
+        SELECT
+            l.name AS leisure_name , rs.`date`AS reserve_date, rs.name AS reserve_name
+        FROM
+            reservation rs INNER JOIN leisure l ON (rs.leisure_id = l.id)
+                           INNER JOIN `user` u ON (rs.user_id = u.id)
+        WHERE
+            rs.id = #{reservation_id}
     </select>
 
     <update id="update" flushCache="true" parameterType="com.lec.spring.domain.Review">
@@ -38,4 +55,5 @@
     <delete id="delete" flushCache="true" parameterType="com.lec.spring.domain.Review">
         DELETE FROM review WHERE id = #{id}
     </delete>
+
 </mapper>

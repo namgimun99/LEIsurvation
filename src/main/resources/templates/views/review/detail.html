@@ -24,8 +24,8 @@
       <title>리뷰 상세 - [[${review.subject}]]</title>
     </head>
     <body>
-        <!-- header -->
-<!--        <th:block th:insert="~{common/header::header}"></th:block>-->
+        <!--*/ 인증 header */-->
+        <th:block th:insert="~{common/header::header}"></th:block>
     
         <div class="container mt-3">
           
@@ -40,50 +40,25 @@
                 <span class="float-end ms-4">작성일: [[${#temporals.format(review.regdate, 'yyyy-MM-dd HH:mm:ss')}]]</span>
             </div>
 
-            <!--TODO fk-->
-            <!--/*
-            <div class="mb-3">
-              <th:block th:with="leisure=${leisure[0]}" th:if="${leisure} and ${#lists.size(leisure) > 0}">
-                <input type="text" class="form-control" id="leisure-name" name="name" th:value="${leisure.name}">
-              </th:block>
-            </div>
-            <th:block th:with="reserve=${reserve[0]}" th:if="${reserve} and ${#lists.size(reserve) > 0}">
-                <div class="mb-3">
-                    <input type="text" class="form-control" id="date" name="date" th:value="${reserve.date}">
-                </div>
-                <div class="mb-3">
-                    <input type="text" class="form-control" id="user-name" name="name" th:value="${reserve.name}">
-                </div>
-            </th:block>
-            */-->
-
-            <!-- test 용-->
-            <div class="mb-3">
-                <input type="text" class="form-control" id="reservation_id" name="reservation_id" placeholder="reservation_id" th:value="${review.reservation_id}">
-            </div>
-            <div class="mb-3">
-                <input type="text" class="form-control" id="user_id" name="user_id" placeholder="user_id" th:value="${review.user_id}">
-            </div>
+            <div class="mb-3">레져 이름 : [[${review.leisure_name}]]</div>
+            <div class="mb-3">예약 날짜 : [[${review.reserve_date}]]</div>
+            <div class="mb-3">작성자 : [[${review.reserve_name}]]</div>
 
             <div class="mb-3">
-                <input type="text" class="form-control" id="leisure_id" name="leisure_id" placeholder="제목을 입력하세요" th:value="${review.leisure_id}">
-            </div>
-
-            <div class="mb-3">
-              <input type="text" class="form-control" id="subject" name="subject" placeholder="제목을 입력하세요" th:value="${review.subject}">
+              <input type="text" class="form-control" id="subject" name="subject"th:value="${review.subject}" readonly>
             </div>
             <div class="mb-3">
-                <input type="text" class="form-control" rows="5" id="content" name="content" placeholder="내용을 입력하세요" th:value="${review.content}"></input>
+                <textarea class="form-control" rows="5" id="content" name="content" th:text="${review.content}" readonly></textarea>
             </div>
             <div class="mb-3 w-25">
-              <input type="text" class="form-control text-warning" name="star" id="star" th:value="${review.star}">
+                <input type="text" readonly class="form-control text-warning" value="★ 별점">
+              <input type="text" class="form-control text-warning" name="star" id="star" th:value="${review.star}" readonly>
             </div>
   
-            <a class="btn btn-outline-dark" th:href="@{/review/update(id=${review.id})}">수정</a>
+            <a class="btn btn-outline-dark" th:href="@{/review/update(id=${review.id})}" >수정</a>
             <a class="btn btn-outline-dark" th:href="@{/review/list}">목록</a>
             <button type="button" class="btn btn-outline-dark" id="btnDel">삭제</button>
-            <!-- TODO 작성 버튼은 mypage/member로 옮긴다-->
-            <a class="btn btn-outline-dark" th:href="@{/review/write}">작성</a>
+
             
         </div>
     </body>

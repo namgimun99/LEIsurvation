@@ -58,57 +58,10 @@ public class ReviewService {
         return result;
     }
 
-    // TODO 특정 id의 reserve 조회
-//    public List<String> reserve(long id){
-//        List <String> reserve = new ArrayList<>();
-//        Review r = reviewRepository.findById(id);
-//        String reservation_id = r.getReservation_id();
-//        String rs = reviewRepository.reserve(reservation_id);
-//        if(rs != null){
-//            reserve.add(rs);
-//        }
-//        return reserve;
-//    }
+    // leisure, reserve 정보 조회
+    public List<Review> RLlist(Long reservation_id) {
+        return reviewRepository.findByRSId(reservation_id);
+    }
 
 
-    // TODO getLeisure_id() 필요 reservedto 필요
-//    // 특정 id의 leisure 조회
-//    public List<String> leisure(long id){
-//        List <String> leisure = new ArrayList<>();
-//        Review r = reviewRepository.findById(id);
-//        String reservation_id = r.getReservation_id();
-//        String rs = reviewRepository.reserve(reservation_id);
-//        if(rs != null){
-//            String leisure_id = rs.getLeisure_id();
-//            if(leisure_id != null) {
-//                String l = reviewRepository.leisure(leisure_id);
-//                leisure.add(l);
-//            }
-//        }
-//        return leisure;
-//    }
-//
-//    // leisure 목록
-//    public List<String> leisureList() {
-//        List<String> leisure = new ArrayList<>();
-//        List<String> reserve = new ArrayList<>();
-//
-//        // 모든 리뷰
-//        List<Review> reviews = reviewRepository.findAll();
-//        // 리뷰가 있는 예약 목록
-//        if(reviews != null) {
-//            for (Review i : reviews) {
-//                String r = reviewRepository.reserve(i.getReservation_id());
-//                reserve.add(r);
-//            }
-//            if(reserve != null) {
-//                // 예약된 레저 목록
-//                for (String j : reserve) {
-//                  String l = reviewRepository.leisure(j.getLeisure_id());
-//                  leisure.add(l);
-//                }
-//            }
-//        }
-//        return leisure;
-//    }
 }

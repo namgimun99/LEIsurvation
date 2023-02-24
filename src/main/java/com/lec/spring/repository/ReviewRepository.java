@@ -12,6 +12,9 @@ public interface ReviewRepository {
     // 특정 id글 내용 읽기
     Review findById(long id);
 
+    // reservation_id로 레져이름, 예약날짜, 작성자 불러오기
+    List<Review> findByRSId(long reservation_id);
+
     // 전체 글 목록 : 최신순
     List<Review> findAll();
 
@@ -21,11 +24,4 @@ public interface ReviewRepository {
     // 특정 id 글 수정
     int update(Review review);
 
-    // 리뷰가 있는 예약
-    String reserve(String reservation_id);
-
-    // 예약된 레져 목록
-    String leisure(String leisure_id);
-
-    // TODO : 평점 입력
 }
