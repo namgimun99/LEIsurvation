@@ -32,14 +32,6 @@
     </div>
 </div>
     <form th:action="@{/leisure/write}" method="post" enctype="Multipart/form-data">
-<!--        <div class="mb-3">-->
-<!--            <label for="company_id">회사 번호:</label>-->
-<!--            <select name="company_id" class="form-select" id="company_id" th:value="${company_id}" placeholder="회사 id값" >-->
-<!--                <option >회사 id 선택</option>-->
-<!--                <option th:selected="${company_id}=='1'">정기권</option>-->
-<!--                <option th:selected="${company_id}=='2'">할인권</option>-->
-<!--            </select>-->
-<!--        </div>-->
         <div class = write>
             <input type="hidden" class="form-control" id="company_id" placeholder="company_id" name="company_id" th:value="${company_id}">
         </div>

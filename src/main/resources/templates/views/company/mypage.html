@@ -52,21 +52,7 @@
         <a class="btn btn-outline-dark" th:href="@{/leisure/write(company_id=${dto.id})}">레져등록</a>
         <div class=detail>
 
-          <hr>
-            <h2>등록한 레저 목록</h2>
-          <hr>
-          <label>레져이름:</label>
-          <div class="border bg-light rounded p-2" >[[${dto.address}]]</div>
-          <label>레져주소:</label>
-          <div class="border bg-light rounded p-2" >[[${dto.address}]]</div>
         </div>
-        <div id = dbutton>
-          <!-- 하단 링크 -->
-          <a class="btn btn-outline-dark" th:href="@{/leisure/detail}">leisure.detail로 이동</a>
-        </div>
-
-        <!-- 하단 링크 -->
-
       </section>
     </div>
   </div>
