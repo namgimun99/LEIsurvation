@@ -78,6 +78,9 @@ public class UserController {
         return page;
     }
 
+    @GetMapping("/practice")
+    public void test(){}
+
     @InitBinder
     public void initBinder(WebDataBinder binder){
         binder.setValidator(new UserValidator());

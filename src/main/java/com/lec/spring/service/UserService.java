@@ -52,6 +52,18 @@ public class UserService {
         return 1;
     }
 
+    // 컴퍼니 등록
+    public int companyJoin(User user){
+        userRepository.c_update(user);
+        Authority auth = authorityRepository.findByName("ROLE_COMPANY");
+
+        Long user_id = user.getId();
+        Long auth_id = auth.getId();
+        authorityRepository.addAuthority(user_id, auth_id);
+
+        return 1;
+    }
+
     //  특정 유저가 갖고 있는 권한들
     public List<Authority> selectAuthoritiesById(Long id){
         User user = userRepository.findById(id);

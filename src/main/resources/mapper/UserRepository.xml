@@ -31,9 +31,10 @@
         VALUE(#{username}, #{password})
     </insert>
 
-    <update id="update" flushCache="true" parameterType="com.lec.spring.domain.User">
-        UPDATE user SET u_id = #{u_id}, password = #{password}
-        WHERE id = #{id}
+    <update id="c_update" flushCache="true" parameterType="com.lec.spring.domain.User"
+            keyProperty="id" useGeneratedKeys="true" keyColumn="id">
+        UPDATE user_authorities SET authority_id = 3
+        WHERE user_id = #{user_id}
     </update>
 
 </mapper>
