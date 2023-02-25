@@ -36,8 +36,11 @@
 </head>
 <body>
 
-<h2>목록입니다.</h2>
+<div style="background-color:gray" th:each="dto:${list[0]}">
+  <h3>프로필</h3>
 
+  <!--이거 권한 달아야된다.-->
+</div>
 
 
 </hr>
@@ -46,9 +49,14 @@
 
 
   <div style="background-color:gray" th:each="dto:${list[0]}">
-    <h3>프로필</h3>
-    <td rowspan="3" style="width:150px"><a class="btn btn-outline-dark" th:href="@{/reserve/company(user_id=${dto.user_id})}">등록한 레저 목록 보기</a></td>
-<!--이거 권한 달아야된다.-->
+    <tr>
+      <td>이름: [[${dto.companyWrite.name}]]</td>
+      <td>회사이름: [[${dto.companyWrite.companyname}]]</td>
+      <td>주소: [[${dto.companyWrite.address}]]</td>
+      <td style="width:150px"><button type="button" class="btn btn-outline-dark" onclick="history.back()">돌아가기</button>
+      </td>
+
+    </tr>
   </div>
   <hr>
 
@@ -58,33 +66,14 @@
   <table th:each="dto:${list}" style="text-align:center">
     <!--이 위에는 그냥 목록에서 id 타고 detail 로 들어가는 것 -->
 
-      <tr>
-        <th rowspan="5">제목</th>
-        <th>이름</th>
-        <td>[[${dto.leisureWrite.name}]]</td>
-        <td rowspan="5" style="width:150px"><a class="btn btn-outline-dark" th:href="@{/reserve/detail(id=${dto.id})}">예약수정</a></td>
-        <td rowspan="5" style="width:150px"><a class="btn btn-outline-dark" th:href="@{/review/write(reservation_id=${dto.id})}">후기작성</a></td>
-      </tr>
-
-      <tr>
-        <th>가격</th>
-        <td>[[${dto.leisureWrite.price}]]</td>
-      </tr>
-
-      <tr>
-        <th>주소</th>
-        <td>[[${dto.leisureWrite.address}]]</td>
-
-      </tr>
     <tr>
-      <th>예약처리시간</th>
-      <td>[[${#temporals.format(dto.regdate, 'yyyy-MM-dd HH:mm:ss')}]]</td>
-
+      <th rowspan="3">제목</th>
+      <th>레저이름</th>
+      <td>[[${dto.name}]]</td>
     </tr>
     <tr>
-      <th>예약시간</th>
-      <td>[[${dto.date}]]</td>
-
+      <th>레저주소</th>
+      <td>[[${dto.address}]]</td>
     </tr>
 
     <br>

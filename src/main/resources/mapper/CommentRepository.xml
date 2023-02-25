@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lec.spring.repository.CommentRepository">
+
+    <resultMap id="mapUser" type="com.lec.spring.domain.User">
+        <result column="u_id" property="id"/>
+        <result column="u_username" property="username"/>
+        <result column="u_password" property="password"/>
+        <result column="u_regdate" property="regdate"/>
+    </resultMap>
+
+    <resultMap id="mapComment" type="com.lec.spring.domain.Qna_comment">
+        <result column="c_id" property="id"/>
+        <result column="c_content" property="content"/>
+        <result column="c_regdate" property="regdate"/>
+        <result column="c_qna_id" property="qna_id"/>
+        <collection property="user" resultMap="mapUser"/>
+    </resultMap>
+
+    <select id="findByWrite" resultMap="mapComment">
+        SELECT
+        c.id "c_id",
+        c.content "c_content",
+        c.regdate "c_regdate",
+        c.qna_id "c_qna_id",
+        u.id "u_id",
+        u.username "u_username",
+        u.password "u_password",
+        u.regdate "u_regdate"
+        FROM qna_comment c, user u
+        WHERE
+        c.user_id = u.id
+        AND c.qna_id = #{param1}
+        ORDER BY c.id DESC
+    </select>
+
+
+
+
+    <insert id="save" flushCache="true" parameterType="com.lec.spring.domain.Qna_comment"
+            keyProperty="id" useGeneratedKeys="true" keyColumn="id">
+        INSERT INTO qna_comment(user_id, qna_id, content)
+        VALUES(#{user.id}, #{qna_id}, #{content})
+    </insert>
+
+    <delete id="deleteById" flushCache="true">
+        DELETE FROM qna_comment WHERE id = #{id}
+    </delete>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

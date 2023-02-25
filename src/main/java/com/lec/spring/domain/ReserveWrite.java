@@ -14,9 +14,9 @@ import java.time.LocalDateTime;
 public class ReserveWrite { //여기에서는 name, phone, regdate, reserve_date 를 받아야함.
     private Long id;
     private String name;
-    private int phone;
+    private Long phone;
     private LocalDateTime regdate;
-    private int date;
+    private Long date;
     private int leisure_id;
     private int user_id;
 

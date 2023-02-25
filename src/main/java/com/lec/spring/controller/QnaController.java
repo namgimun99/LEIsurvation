@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import com.lec.spring.util.U;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -105,15 +106,10 @@ public class QnaController {
     }
 
 
-
-
-
-
-
-
     @GetMapping("/detail")
-    public void detail(Long id, Model model){
-        model.addAttribute("list",qnaService.detail(id));  //수정 pk 인 id 는 그대로 받고 id 로 함! 3개 join 한 것을 다 빼버림
+    public void detail(long id, Model model){
+        model.addAttribute("list",qnaService.detail(id));
+        model.addAttribute("conPath",U.getRequest().getContextPath());  // 댓글때매 씀
 
     }
 

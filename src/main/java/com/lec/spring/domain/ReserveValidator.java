@@ -11,10 +11,8 @@ public class ReserveValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> clazz) {
-        System.out.println("supports("+clazz.getName()+")");
 
         boolean result = ReserveWrite.class.isAssignableFrom(clazz);
-        System.out.println(result);
         return result;
     }
 
@@ -25,28 +23,22 @@ public class ReserveValidator implements Validator {
         System.out.println("validate() 호출: "+reserveWrite);
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors,"name","이름은 필수입니다.");
-//        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"phone","핸드폰 번호는 필수입니다.");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"date","날짜입력은 필수입니다.");
 
-
-        int phone=reserveWrite.getPhone();
-
-        if(phone==0){
-            errors.rejectValue("phone","핸드폰 번호는 필수입니다.");
+        Long date=reserveWrite.getDate();
+        if(date==null||date.longValue()==8){
+            errors.rejectValue("date","날짜는 8글자로 형식에 맞게 적어주세요");
         }
-
-
-//        String kind=write.getCp_kind();
-//        if(!(kind.trim().equals("할인권")||kind.trim().equals("정기권"))){
-//            errors.rejectValue("cp_kind","쿠폰 종류에는 '정기권' 이나 '할인권' 둘 중 하나를 입력해주세요");
+        Long phone=reserveWrite.getPhone();
+        if(phone==null||phone.longValue()==11){
+            errors.rejectValue("phone","전화번호는 11글자로 형식에 맞게 적어주세요");
+        }
+//        if(date.longValue()>8){
+//            errors.rejectValue("date","8글자 이내로 형식에 맞게 적어주세요");
 //        }
-//
-//
-//
-//        String sno=write.getCp_sno();
-//        if(sno.length()>15){
-//            errors.rejectValue("cp_sno","글자 수는 쿠폰 형식대로 해주세요");
+//        if(phone.longValue()>11){
+//            errors.rejectValue("phone","11글자 이내로 적어주세요");
 //        }
+
 //
 //
 //        Pattern pattern = Pattern.compile("\\w{4}"+"-\\w{2}"+"-\\w{2}");

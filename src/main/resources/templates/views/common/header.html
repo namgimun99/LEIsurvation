@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<th:block th:fragment="header">
+<th:block th:fragment="header" th:with="user=${#authentication.getPrincipal().getUser()}">
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">
       </button>
@@ -16,14 +16,14 @@
             <a class="nav-link" th:href="@{/qna/list}">고객센터</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/mypage/member}">mypage</a>
+            <a class="nav-link" th:href="@{/reserve/member(user_id=${user.id})}">mypage</a>
           </li>
         </ul>
 <!--        로그인 안했을때-->
         <a class="btn btn-primary" sec:authorize="isAnonymous()" th:href="@{/user/login}">LOGIN</a>
 
         <!-- 로그인 했을때는 username 과 로그아웃 form 보여주기 -->
-        <form th:action="@{/user/logout}" method="POST" sec:authorize="isAuthenticated()" th:with="user=${#authentication.getPrincipal().getUser()}">
+        <form th:action="@{/user/logout}" method="POST" sec:authorize="isAuthenticated()" >
           <!--TODO : 로그아웃후 다시 돌아오기 -->
           <span class="d-flex">
                         <span class="text-light p-2"><span>[[${user.username}]]</span>님 환영합니다!</span>
@@ -33,6 +33,7 @@
       </div>
     </div>
   </nav>
+
 </th:block>
 
 </html>

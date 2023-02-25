@@ -20,5 +20,8 @@ public interface ReserveRepository {
 
     List<ReserveWrite> findAll(Long user_id);
 
+    List<LeisureWrite> findAllCompany(Long user_id);
+
+
 
 }

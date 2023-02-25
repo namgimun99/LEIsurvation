@@ -51,7 +51,6 @@ public class ReserveController {
             redirectAttributes.addFlashAttribute("name", reserveWrite.getName());
             redirectAttributes.addFlashAttribute("phone", reserveWrite.getPhone());
             redirectAttributes.addFlashAttribute("date", reserveWrite.getDate());
-//            redirectAttributes.addAttribute("name",reserveWrite.getName());
 
             List<FieldError> errorList=result.getFieldErrors(); //에러의 list 를 리턴***
             for(FieldError err:errorList){
@@ -77,7 +76,6 @@ public class ReserveController {
                 //id 는 PK 가져옴 write.html 에서 했던 것처럼 로그인되어있는 user_id 를 가져온다. update(Post)도 동일
         model.addAttribute("result", reserveService.deleteById(id));
         int num1=reserveWrite.getUser_id();
-        System.out.println(num1);
         model.addAttribute("dto", num1);
 
     }
@@ -98,9 +96,18 @@ public class ReserveController {
     @GetMapping("/member")
     public void list(Long user_id, Model model){
 //        System.out.println(name);
+        System.out.println(user_id);
         model.addAttribute("list",reserveService.list(user_id));
     }
 
+
+
+    @GetMapping("/company")
+    public void company(Long user_id, Model model){
+        model.addAttribute("list",reserveService.listCompany(user_id));
+        System.out.println(user_id);
+        System.out.println(reserveService.listCompany(user_id)+"zzzzzzzzzzzzzzzzzzzzzzzzz");
+    }
 
 
     @InitBinder

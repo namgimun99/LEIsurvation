@@ -1,11 +1,10 @@
 package com.lec.spring.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -18,5 +17,9 @@ public class Qna {
     private String content;
     private LocalDateTime regdate;
 
+    private User user;
 
+    @ToString.Exclude
+    @Builder.Default
+    private List<CommentDTO> files = new ArrayList<>();
 }

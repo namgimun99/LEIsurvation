@@ -94,6 +94,9 @@ public class ReserveService {
             return reserveRepository.findAll(user_id);
     }
 
+    public List<LeisureWrite> listCompany(Long user_id) {
+        return reserveRepository.findAllCompany(user_id);
+    }
 
 
 

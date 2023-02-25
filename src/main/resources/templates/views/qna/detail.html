@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
+<script th:if="${list == null} or ${#lists.size(list) <= 0}">
+    alert("해당 정보가 삭제되거나 없습니다");
+    history.back();
+</script>
+
+
+<th:block th:if="${list} and ${#lists.size(list) > 0}" th:with="dto=${list[0]}">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +19,12 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-  <script th:src="@{/js/detail.js}"></script>
+  <script th:inline="javascript">
+    const conPath =[[${conPath}]];
+    const logged_id = [[${dto.user_id}]];
+  </script>
+
+  <script th:src="@{/js/qnaComment/detail.js}"></script>
 
   <title>작성</title>
 </head>
@@ -19,7 +32,7 @@
 
 
 <body>
-<div class="container mt-3" th:with="dto=${list[0]}">
+<div class="container mt-3">
   <h2>작성</h2><br>
   <div style="float:right" >작성일: [[${#temporals.format(dto.regdate, 'yyyy-MM-dd HH:mm:ss')}]]</div>
   <br>
@@ -30,7 +43,7 @@
       <!--/* 에러메세지 */-->
     </div>
   </div>
-
+<section>
   <form name="frmDelete" th:action="@{/qna/delete}" method="post">
     <input type="hidden" name="id" th:value="${dto.id}">
   </form>
@@ -52,7 +65,10 @@
     <a class="btn btn-outline-dark" th:href="@{/qna/list(page=${session.page})}">목록</a>
     <a class="btn btn-outline-dark" th:href="@{/qna/write}">작성</a>
 
+  <th:block th:insert="~{qna/comment::comment}"></th:block>
+</section>
 </div>
 
 </body>
+</th:block>
 </html>

@@ -110,5 +110,44 @@
         AND d.user_id=#{user_id}
     </select>
 
+    <resultMap id="mapCom" type="com.lec.spring.domain.LeisureWrite">
+        <result column="s_address" property="address"/>
+        <result column="s_name" property="name"/>
+        <result column="s_company_id" property="company_id"/>
+        <result column="s_id" property="id"/>
+        <collection property="companyWrite" resultMap="mapCompany"/>
+
+    </resultMap>
+
+
+    <resultMap id="mapCompany" type="com.lec.spring.domain.CompanyWrite">
+        <result column="d_id" property="id"/>
+        <result column="d_name" property="name"/>
+        <result column="d_companyname" property="companyname"/>
+        <result column="d_address" property="address"/>
+        <result column="d_user_id" property="user_id"/>
+    </resultMap>
+
+
+    <select id="findAllCompany"  resultMap="mapCom">
+
+        SELECT
+        d.id "d_id",
+        d.name "d_name",
+        d.companyname "d_companyname",
+        d.address "d_address",
+        d.user_id "d_user_id",
+        s.address "s_address",
+        s.name "s_name",
+        s.company_id "s_company_id",
+        s.id "s_id"
+        FROM
+        company d, leisure s
+        WHERE
+        d.id = s.company_id
+        AND d.user_id=#{user_id}
+    </select>
+
+
 
 </mapper>
