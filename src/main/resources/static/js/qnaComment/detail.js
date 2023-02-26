@@ -101,10 +101,13 @@ function buildComment(result){
 
 
 		// 삭제버튼 여부 : 작성자 본인인 경우만 삭제버튼 보이게 하기.
-        const delBtn = `
-                        <i class="btn fa-solid fa-delete-left text-danger" data-bs-toggle="tooltip"
-                            data-cmtdel-id="${id}" title="삭제"></i>
-                    `;
+         const delBtn = (logged_id !== user_id) ? '' : `
+                                <i class="btn fa-solid fa-delete-left text-danger" data-bs-toggle="tooltip"
+                                    data-cmtdel-id="${id}" title="삭제"></i>
+                            `;
+
+
+
 
         const row = `
             <tr>

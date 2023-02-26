@@ -25,18 +25,23 @@
     <title>수정</title>
   </head>
   <body>
+  <th:block th:insert="~{common/header::header}"></th:block>
+
   <div class="container mt-3" id="update">
     <h2>수정</h2>
-    <hr>
+    <hr><br>
+
+    <div th:if="${error}">
+      <div class ="col-12 text-danger" th:text="${error}">
+      </div>
+    </div>
+
     <form name="frm" th:action="@{/reserve/update}" method="post">
 
       <input type="hidden" name="user_id" th:value="${dto.user_id}"/>
       <input type="hidden" name="id" th:value="${dto.id}"/>
 
-      <div style="margin-top:100px" th:if="${error}">
-        <div class ="col-12 text-danger" th:text="${error}">
-        </div>
-      </div>
+
       <div class="mb-3">
         <label for="lename">레저 이름</label>
         <input type="text" class="form-control" id="lename" th:value="${dto.leisureWrite.name}" readonly>
@@ -65,9 +70,7 @@
 
 
       <button type="submit" class="btn btn-outline-dark">수정완료</button>
-      <button type="button" class="btn btn-outline-dark" onclick="history.back()">수정 취소</button>
-
-
+      <a class="btn btn-outline-dark" th:href= "@{/reserve/detail(id=${dto.id})}">수정 취소</a>
 
     </form>
   </div>

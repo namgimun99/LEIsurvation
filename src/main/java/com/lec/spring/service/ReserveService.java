@@ -16,12 +16,10 @@ import java.util.List;
 public class ReserveService {
 
     private ReserveRepository reserveRepository;
-//    private UserRepoistory userRepoistory;  ******
 
     @Autowired
     public ReserveService(SqlSession sqlSession) {
         reserveRepository = sqlSession.getMapper(ReserveRepository.class);
-//        userRepoistory = sqlSession.getMapper(UserRepository.class);  ******
         System.out.println("ReserveService() 생성");
     }
     public ReserveService(){
@@ -51,7 +49,6 @@ public class ReserveService {
         }
         return list;
 
-//        return reserveRepository.findLeis(id);
     }
     @Transactional
     public List<ReserveWrite> detail(Long id) {

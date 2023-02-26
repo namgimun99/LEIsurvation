@@ -23,29 +23,35 @@ public class ReserveValidator implements Validator {
         System.out.println("validate() 호출: "+reserveWrite);
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors,"name","이름은 필수입니다.");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"date","날짜는 필수입니다.");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"phone","전화번호는 필수입니다.");
 
-        Long date=reserveWrite.getDate();
-        if(date==null||date.longValue()==8){
+        String date=reserveWrite.getDate();
+        if(date.length()!=8){
             errors.rejectValue("date","날짜는 8글자로 형식에 맞게 적어주세요");
         }
-        Long phone=reserveWrite.getPhone();
-        if(phone==null||phone.longValue()==11){
+
+        String phone=reserveWrite.getPhone();
+        if(phone.length()!=11||(!phone.startsWith("0"))){
             errors.rejectValue("phone","전화번호는 11글자로 형식에 맞게 적어주세요");
         }
-//        if(date.longValue()>8){
-//            errors.rejectValue("date","8글자 이내로 형식에 맞게 적어주세요");
-//        }
-//        if(phone.longValue()>11){
-//            errors.rejectValue("phone","11글자 이내로 적어주세요");
-//        }
 
-//
-//
-//        Pattern pattern = Pattern.compile("\\w{4}"+"-\\w{2}"+"-\\w{2}");
-//        Matcher matcher = pattern.matcher(sno);
-//        if(!(matcher.find())){
-//            errors.rejectValue("cp_sno","####-##-## 형식으로 숫자와 문자(영어)만 입력해주세요");
-//        }
+        Pattern pattern1 = Pattern.compile("\\d{11}");
+        Matcher matcher1 = pattern1.matcher(phone);
+        if(!(matcher1.find())){
+            errors.rejectValue("phone","숫자를 입력해주세요");
+        }
+
+        Pattern pattern2 = Pattern.compile("\\d{8}");
+        Matcher matcher2 = pattern2.matcher(date);
+        if(!(matcher2.find())){
+            errors.rejectValue("date","숫자로 입력해주세요");
+        }
+
+
+
+
+
 
     }
 }

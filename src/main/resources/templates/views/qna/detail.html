@@ -7,7 +7,7 @@
 </script>
 
 
-<th:block th:if="${list} and ${#lists.size(list) > 0}" th:with="dto=${list[0]}">
+<th:block th:if="${list} and ${#lists.size(list) > 0}"  th:with="user=${#authentication.getPrincipal().getUser()}">
 
 <head>
   <meta charset="utf-8">
@@ -21,7 +21,7 @@
 
   <script th:inline="javascript">
     const conPath =[[${conPath}]];
-    const logged_id = [[${dto.user_id}]];
+    const logged_id = [[${user.id}]];
   </script>
 
   <script th:src="@{/js/qnaComment/detail.js}"></script>
@@ -32,7 +32,9 @@
 
 
 <body>
-<div class="container mt-3">
+<th:block th:insert="~{common/header::header}"></th:block>
+
+<div class="container mt-3" th:with="dto=${list[0]}">
   <h2>작성</h2><br>
   <div style="float:right" >작성일: [[${#temporals.format(dto.regdate, 'yyyy-MM-dd HH:mm:ss')}]]</div>
   <br>
@@ -60,10 +62,12 @@
       </textarea>
     </div>
 
-  <a class="btn" th:href= "@{/qna/update(id=${dto.id})}">예약 수정</a>
-  <button type="button" class="btn btn-outline-dark" id="btnDel">삭제</button>
+  <a class="btn btn-outline-dark" th:href= "@{/qna/update(id=${dto.id})}" th:if="${user.id == dto.user_id}">예약 수정</a>
+  <button type="button" class="btn btn-outline-dark" id="btnDel" th:if="${user.id == dto.user_id}">삭제</button>
     <a class="btn btn-outline-dark" th:href="@{/qna/list(page=${session.page})}">목록</a>
     <a class="btn btn-outline-dark" th:href="@{/qna/write}">작성</a>
+
+
 
   <th:block th:insert="~{qna/comment::comment}"></th:block>
 </section>

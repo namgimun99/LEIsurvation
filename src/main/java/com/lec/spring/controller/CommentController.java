@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.*;
 
-@RestController //data 를 response 한다. View 리턴하는게 아님
+@RestController
 @RequestMapping("/comment")
 public class CommentController {
     @Autowired
@@ -20,41 +20,6 @@ public class CommentController {
     public CommentController(){
         System.out.println(getClass().getName()+"생성");
     }
-
-    @GetMapping("/test1")
-    public QryCommentList test1(Long id){
-
-        QryCommentList list = new QryCommentList();
-
-        list.setCount(1);
-        list.setStatus("Ok");
-        Qna_comment qmt = Qna_comment.builder()
-                .user(User.builder().username("user1").id(31L).regdate(LocalDateTime.now()).build())
-                .content("어떤가요?")
-                .regdate(LocalDateTime.now())
-                .build();
-        List<Qna_comment> qmtList = new ArrayList<>();
-        qmtList.add(qmt);
-        list.setList(qmtList);
-
-        return list;
-    }
-
-    @GetMapping("/test2")
-    public List<Integer> test2(){
-        List<Integer> list = Arrays.asList(10,20,30);
-        return list;
-    }
-
-    @GetMapping("/test3")
-    public Map<Integer, String> test3(){
-        Map<Integer,String> myMap = new HashMap<>(){{
-            put(100,"백이다");
-            put(200,"이백이다");
-        }};
-        return myMap;
-    }
-
 
     @GetMapping("/list")
     public QryCommentList list(Long id){

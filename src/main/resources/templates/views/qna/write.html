@@ -17,6 +17,8 @@
 </head>
 
 <body>
+<th:block th:insert="~{common/header::header}"></th:block>
+
 <div class="container mt-3" th:with="user=${#authentication.getPrincipal().getUser()}">
   <h2>작성</h2>
   <hr>

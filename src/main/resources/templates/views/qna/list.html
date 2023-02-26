@@ -15,6 +15,10 @@
 </head>
 <body>
 
+<!--헤더 적용이 안됨. header 에 authentication 때매..-->
+<th:block th:insert="~{common/header::header}"></th:block>
+<br>
+
 <h2>목록입니다.</h2>
 <hr>
 <div class="mb-3 mt-3 clearfix">
@@ -41,6 +45,8 @@
     <th>제목</th>
     <th>등록자</th>
     <th>등록일</th>
+    <th><a class="btn btn-outline-dark" th:href="@{/qna/write}">작성</a>
+    </th>
   </tr>
 
   </thead>
@@ -52,6 +58,7 @@
     <td><a th:href="@{/qna/detail(id=${dto.id})}">[[${dto.subject}]]</a></td>
     <td>[[${dto.user_id}]]</td>
     <td>[[${#temporals.format(dto.regdate, 'yyyy-MM-dd HH:mm:ss')}]]</td>
+    <td></td>
 
 
 
@@ -61,11 +68,7 @@
 </table>
 
 </div>
-<div class="row">
-  <div class="col-12">
-    <a class="btn btn-outline-dark" th:href="@{/qna/write}">작성</a>
-  </div>
-</div>
+
 
 <!-- pagination -->
 <th:block th:insert="~{qna/pagination::pagination}"></th:block>

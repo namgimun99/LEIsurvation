@@ -8,10 +8,8 @@ public class QnaValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> clazz) {
-        System.out.println("supports("+clazz.getName()+")");
 
         boolean result = Qna.class.isAssignableFrom(clazz);
-        System.out.println(result);
         return result;
     }
 
@@ -23,11 +21,6 @@ public class QnaValidator implements Validator {
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors,"subject","제목은 필수입니다.");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors,"content","내용 입력은 필수입니다.");
-
-
-
-
-
 
     }
 }

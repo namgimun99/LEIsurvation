@@ -33,6 +33,6 @@ public class Qna_comment {
     private User user;
 
     @JsonIgnore
-    private Long qna_id;   //write_id
+    private Long qna_id;
 
 }

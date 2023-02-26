@@ -11,12 +11,12 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ReserveWrite { //여기에서는 name, phone, regdate, reserve_date 를 받아야함.
+public class ReserveWrite {
     private Long id;
     private String name;
-    private Long phone;
+    private String phone;
     private LocalDateTime regdate;
-    private Long date;
+    private String date;
     private int leisure_id;
     private int user_id;
 

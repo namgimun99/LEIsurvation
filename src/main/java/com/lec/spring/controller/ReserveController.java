@@ -37,8 +37,62 @@ public class ReserveController {
 
     }
 
+
+
+
+    @GetMapping("/detail")
+    public void detail(Long id, Model model){
+        model.addAttribute("list",reserveService.detail(id));
+    }
+
+
+
+    @PostMapping("/delete")
+    public void delete(Long id, ReserveWrite reserveWrite, Model model){
+        model.addAttribute("result", reserveService.deleteById(id));
+        int num1=reserveWrite.getUser_id();
+        model.addAttribute("dto", num1);
+
+    }
+    @GetMapping("/update")
+    public void update(Long id,Model model){
+        model.addAttribute("list", reserveService.selectById(id));
+    }
+
+
+    @PostMapping("/update")
+    public String updateOk(@Valid ReserveWrite reserveWrite
+            , BindingResult result
+            , Model model
+            , RedirectAttributes redirectAttributes
+    ){
+
+        Long num1=reserveWrite.getId();
+
+        if(result.hasErrors()){
+            //redirect 시에 기존에 입력했던 값들은 보이게 하기
+            redirectAttributes.addFlashAttribute("name", reserveWrite.getName());
+            redirectAttributes.addFlashAttribute("phone", reserveWrite.getPhone());
+            redirectAttributes.addFlashAttribute("date", reserveWrite.getDate());
+
+            List<FieldError> errorList=result.getFieldErrors();
+            for(FieldError err:errorList){
+                redirectAttributes.addFlashAttribute("error", err.getCode());
+                break;
+            }
+            return "redirect:/reserve/update?id="+num1;
+
+        }
+
+
+        model.addAttribute("result", reserveService.update(reserveWrite));
+        int num2=reserveWrite.getUser_id();
+        model.addAttribute("dto", num2);
+        return "reserve/updateOk";
+    }
+
     @PostMapping("/write")
-    public String writeOk(@Valid ReserveWrite reserveWrite  //나중에 validation 을 하려면 앞에 @Valid 붙여
+    public String writeOk(@Valid ReserveWrite reserveWrite
             , BindingResult result
             , Model model
             , RedirectAttributes redirectAttributes
@@ -52,7 +106,7 @@ public class ReserveController {
             redirectAttributes.addFlashAttribute("phone", reserveWrite.getPhone());
             redirectAttributes.addFlashAttribute("date", reserveWrite.getDate());
 
-            List<FieldError> errorList=result.getFieldErrors(); //에러의 list 를 리턴***
+            List<FieldError> errorList=result.getFieldErrors();
             for(FieldError err:errorList){
                 redirectAttributes.addFlashAttribute("error", err.getCode());
                 break;
@@ -66,37 +120,8 @@ public class ReserveController {
         return "/reserve/writeOk";
     }
 
-
-    @GetMapping("/detail")
-    public void detail(Long id, Model model){
-        model.addAttribute("list",reserveService.detail(id));  //수정 pk 인 id 는 그대로 받고 id 로 함! 3개 join 한 것을 다 빼버림
-    }
-    @PostMapping("/delete")
-    public void delete(Long id, ReserveWrite reserveWrite, Model model){
-                //id 는 PK 가져옴 write.html 에서 했던 것처럼 로그인되어있는 user_id 를 가져온다. update(Post)도 동일
-        model.addAttribute("result", reserveService.deleteById(id));
-        int num1=reserveWrite.getUser_id();
-        model.addAttribute("dto", num1);
-
-    }
-    @GetMapping("/update")
-    public void update(Long id,Model model){
-        model.addAttribute("list", reserveService.selectById(id));
-    }
-    @PostMapping("/update")
-    public String updateOk(ReserveWrite reserveWrite, Model model){
-
-        model.addAttribute("result", reserveService.update(reserveWrite));
-        int num1=reserveWrite.getUser_id();
-        System.out.println(num1);
-        model.addAttribute("dto", num1);
-        return "reserve/updateOk";
-    }
-
     @GetMapping("/member")
     public void list(Long user_id, Model model){
-//        System.out.println(name);
-        System.out.println(user_id);
         model.addAttribute("list",reserveService.list(user_id));
     }
 
@@ -105,8 +130,6 @@ public class ReserveController {
     @GetMapping("/company")
     public void company(Long user_id, Model model){
         model.addAttribute("list",reserveService.listCompany(user_id));
-        System.out.println(user_id);
-        System.out.println(reserveService.listCompany(user_id)+"zzzzzzzzzzzzzzzzzzzzzzzzz");
     }
 
 

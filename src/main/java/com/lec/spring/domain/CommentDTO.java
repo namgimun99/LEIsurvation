@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class CommentDTO {
 
     private Long id;
-    private Long qna_id;   // 어느글의 첨부파일? (FK)
+    private Long qna_id;
 
 }
 

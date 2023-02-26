@@ -25,28 +25,14 @@ public class QnaController {
     @Autowired
     private QnaService qnaService;
 
-
     public QnaController(){
         System.out.println("QnaController() 생성");
     }
 
 
-
-
-
-    @GetMapping("/list")
-    public void list(Model model){
-        model.addAttribute("list",qnaService.list());
-
-    }
-
     @GetMapping("/write")
     public void write(){
     }
-
-
-
-
 
 
     @PostMapping("/write")
@@ -86,11 +72,10 @@ public class QnaController {
 
         if(result.hasErrors()){
             Long num1=qna.getId();
-            //redirect 시에 기존에 입력했던 값들은 보이게 하기
             redirectAttributes.addFlashAttribute("subject", qna.getSubject());
             redirectAttributes.addFlashAttribute("content", qna.getContent());
 
-            List<FieldError> errorList=result.getFieldErrors(); //에러의 list 를 리턴***
+            List<FieldError> errorList=result.getFieldErrors();
             for(FieldError err:errorList){
                 redirectAttributes.addFlashAttribute("error", err.getCode());
                 break;
@@ -104,8 +89,6 @@ public class QnaController {
         model.addAttribute("dto", qna);
         return "qna/updateOk";
     }
-
-
     @GetMapping("/detail")
     public void detail(long id, Model model){
         model.addAttribute("list",qnaService.detail(id));
@@ -113,15 +96,10 @@ public class QnaController {
 
     }
 
-
     @GetMapping("/update")
     public void update(Long id,Model model){
         model.addAttribute("list", qnaService.selectById(id));
     }
-
-
-
-
 
 
     @PostMapping("/delete")
@@ -137,21 +115,18 @@ public class QnaController {
         binder.setValidator(new QnaValidator());
     }
 
-
-
-
     //페이징
     //pageRows 변경시 동작
-//    @PostMapping("/pageRows")
-//    public String pageRows(Integer page, Integer pageRows){
-//        U.getSession().setAttribute("pageRows", pageRows);
-//        return "redirect:/qna/list?page=" + page;
-//    }
-//
-//    //페이징 사용
-//    @GetMapping("/list")
-//    public void list(Integer page,Model model){
-//        qnaService.list(page,model);
-//
-//    }
+    @PostMapping("/pageRows")
+    public String pageRows(Integer page, Integer pageRows){
+        U.getSession().setAttribute("pageRows", pageRows);
+        return "redirect:/qna/list?page=" + page;
+    }
+
+    //페이징 사용
+    @GetMapping("/list")
+    public void list(Integer page,Model model){
+        qnaService.list(page,model);
+
+    }
 }

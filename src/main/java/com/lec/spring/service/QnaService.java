@@ -5,6 +5,7 @@ import com.lec.spring.domain.Qna;
 import com.lec.spring.domain.ReserveWrite;
 import com.lec.spring.repository.QnaRepository;
 import com.lec.spring.repository.ReserveRepository;
+import com.lec.spring.util.U;
 import jakarta.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,15 +38,15 @@ public class QnaService {
         if(page==null) page=1;
         if(page < 1) page=1;
 
-//        HttpSession session = U.getSession();  //git 으로 옮길 때는 주석 해제
-//        Integer writePages=(Integer)session.getAttribute("writePages"); //git 으로 옮길 때는 주석 해제
-        Integer writePages = null; //git 으로 옮길때는 삭제
+        HttpSession session = U.getSession();  //git 으로 옮길 때는 주석 해제
+        Integer writePages=(Integer)session.getAttribute("writePages"); //git 으로 옮길 때는 주석 해제
+//        Integer writePages = null; //git 으로 옮길때는 삭제
         if(writePages == null) writePages = C.WRITE_PAGES;
-        Integer pageRows = null; //git 으로 옮길때는 삭제
-//        Integer pageRows=(Integer)session.getAttribute("pageRows"); //git 으로 옮길 때는 주석 해제
+//        Integer pageRows = null; //git 으로 옮길때는 삭제
+        Integer pageRows=(Integer)session.getAttribute("pageRows"); //git 으로 옮길 때는 주석 해제
         if(pageRows == null) pageRows = C.PAGE_ROWS;
 
-//        session.setAttribute("page", page);   //git 으로 옮길 때는 주석 해제
+        session.setAttribute("page", page);   //git 으로 옮길 때는 주석 해제
 
         long cnt = qnaRepository.countAll();  // 글 목록 전체의 개수
         int totalPage = (int)Math.ceil(cnt/(double)pageRows); //총 몇 페이지 분량인가
@@ -67,7 +68,7 @@ public class QnaService {
         model.addAttribute("pageRows", pageRows);  // 한 '페이지' 에 표시할 글 개수
 
         // [페이징]
-//        model.addAttribute("url", U.getRequest().getRequestURI());  // 목록 url //git 으로 옮길 때는 주석 해제
+        model.addAttribute("url", U.getRequest().getRequestURI());  // 목록 url //git 으로 옮길 때는 주석 해제
         model.addAttribute("writePages", writePages); // [페이징] 에 표시할 숫자 개수
         model.addAttribute("startPage", startPage);  // [페이징] 에 표시할 시작 페이지
         model.addAttribute("endPage", endPage);   // [페이징] 에 표시할 마지막 페이지

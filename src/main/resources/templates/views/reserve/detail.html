@@ -16,6 +16,8 @@
     <title>작성</title>
 </head>
 <body>
+<th:block th:insert="~{common/header::header}"></th:block>
+
 <br>
 <div style="margin-top:100px" th:if="${error}">
     <div style="color:red" th:text="${error}">
@@ -58,10 +60,9 @@
         </div>
 
 
-        <a class="btn" th:href= "@{/reserve/update(id=${dto.id})}">예약 수정</a>
+        <a class="btn btn-outline-dark" th:href= "@{/reserve/update(id=${dto.id})}">예약 수정</a>
         <button type="button" class="btn btn-outline-dark" id="btnDel">삭제</button>
         <button type="button" class="btn btn-outline-dark" onclick="history.back()">돌아가기</button>
-<!--/*     <a class="btn" th:href= "@{/mypage/member(id=${dto.id})}">예약 수정</a>  */-->
 
 
 </div>
