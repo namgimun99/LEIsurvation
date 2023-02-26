@@ -16,7 +16,10 @@
             <a class="nav-link" th:href="@{/qna/list}">고객센터</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/reserve/member(user_id=${user.id})}">mypage</a>
+            <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/reserve/member(user_id=${user.id})}">mypage</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/home}">Home</a>
           </li>
         </ul>
 <!--        로그인 안했을때-->
