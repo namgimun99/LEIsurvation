@@ -16,9 +16,6 @@
             <a class="nav-link" th:href="@{/qna/list}">고객센터</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/reserve/member(user_id=${user.id})}">mypage</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" th:href="@{/home}">Home</a>
           </li>
         </ul>
@@ -29,8 +26,9 @@
         <form th:action="@{/user/logout}" method="POST" sec:authorize="isAuthenticated()" th:with="user=${#authentication.getPrincipal().getUser()}">
           <!--TODO : 로그아웃후 다시 돌아오기 -->
           <span class="d-flex">
-                        <span class="text-light p-2"><span>[[${user.username}]]</span>님 환영합니다!</span>
-                        <span><button class="btn btn-danger" type="submit">Logout</button></span>
+            <span><a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/reserve/member(user_id=${user.id})}">mypage</a></span>
+            <span class="text-light p-2"><span>[[${user.username}]]</span>님 환영합니다!</span>
+            <span><button class="btn btn-danger" type="submit">Logout</button></span>
           </span>
         </form>
       </div>
