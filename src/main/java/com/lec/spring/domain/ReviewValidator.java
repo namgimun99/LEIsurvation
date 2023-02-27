@@ -4,9 +4,12 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 public class ReviewValidator implements Validator {
+
+
+
     @Override
     public boolean supports(Class<?> clazz) {
-        boolean result = Review.class.isAssignableFrom(clazz);
+        boolean result = Review.class.isAssignableFrom(clazz) || User.class.isAssignableFrom(clazz) ;
         System.out.println(result);
         return result;
     }

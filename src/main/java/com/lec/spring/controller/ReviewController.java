@@ -3,7 +3,9 @@ package com.lec.spring.controller;
 import com.lec.spring.config.PrincipalDetails;
 import com.lec.spring.domain.Review;
 import com.lec.spring.domain.ReviewValidator;
+import com.lec.spring.domain.User;
 import com.lec.spring.service.ReviewService;
+import com.lec.spring.util.U;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,13 +15,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/review")
@@ -41,8 +42,10 @@ public class ReviewController {
     @GetMapping("/write")
     public void write(Long reservation_id, Model model) {
         List<Review> reviewList = reviewService.RLlist(reservation_id);
+        User user = U.getLoggedUser();
         model.addAttribute("reservation_id", reservation_id);
         model.addAttribute("reviewList", reviewList);
+        model.addAttribute("user_id", user);
     }
 
     @PostMapping("/write")
@@ -51,12 +54,12 @@ public class ReviewController {
                           Model model,
                           RedirectAttributes redirectAttrs) {
 
-        Long userId = ((PrincipalDetails)(SecurityContextHolder.getContext().getAuthentication().getPrincipal())).getUser().getId();
-        review.setUser_id(String.valueOf(userId));
+        // 현재 로그인한 사용자
+//        User user_id = ((PrincipalDetails)(SecurityContextHolder.getContext().getAuthentication().getPrincipal())).getUser();
+//        review.setUser_id(user_id);
 
         // validation
         if(result.hasErrors()){
-            redirectAttrs.addFlashAttribute("reservation_id", review.getReservation_id());
             redirectAttrs.addFlashAttribute("subject", review.getSubject());
             redirectAttrs.addFlashAttribute("content", review.getContent());
 
@@ -76,13 +79,13 @@ public class ReviewController {
     }
 
     @GetMapping("/detail")
-    public void detail(long id, Model model) {
+    public void detail(Long id, Model model) {
         model.addAttribute("reviewList", reviewService.detail(id));
 
     }
 
     @GetMapping("/update")
-    public void update(long id, Model model) {
+    public void update(Long id, Model model) {
         model.addAttribute("reviewList", reviewService.detail(id));
     }
 
@@ -93,8 +96,6 @@ public class ReviewController {
                            RedirectAttributes redirectAttrs) {
         // validation
         if(result.hasErrors()){
-            redirectAttrs.addFlashAttribute("reservation_id", review.getReservation_id());
-            redirectAttrs.addFlashAttribute("user_id", review.getUser_id());
             redirectAttrs.addFlashAttribute("subject", review.getSubject());
             redirectAttrs.addFlashAttribute("content", review.getContent());
 
@@ -113,7 +114,7 @@ public class ReviewController {
     }
 
     @PostMapping("/delete")
-    public String deleteOk(long id, Model model) {
+    public String deleteOk(Long id, Model model) {
         model.addAttribute("result", reviewService.deleteById(id));
         return "review/deleteOk";
     }
@@ -123,4 +124,6 @@ public class ReviewController {
         System.out.println("initBinder() 호출");
         binder.setValidator(new ReviewValidator());
     }
+
+
 }

@@ -1,66 +1,67 @@
 <!DOCTYPE html>
 <html lang="ko"
-        xmlns:th="http://www.thymeleaf.org"
-        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
     <script th:if="${reviewList == null} or ${#lists.size(reviewList) <= 0}">
             alert("해당 정보가 삭제되거나 없습니다");
             history.back();
         </script>
 
-<th:block th:if="${reviewList} and ${#lists.size(reviewList) > 0}" th:with="review=${reviewList[0]}">
-    <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <th:block th:if="${reviewList} and ${#lists.size(reviewList) > 0}" th:with="review=${reviewList[0]}, logged_user=${#authentication.principal.user}">
+        <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
-      <link rel="stylesheet" th:href="@{/css/common.css}">
-    
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+          <link rel="stylesheet" th:href="@{/css/common.css}">
 
-        <script th:src="@{/js/detail.js}"></script>
-    
-      <title>리뷰 상세 - [[${review.subject}]]</title>
-    </head>
-    <body>
-        <!--*/ 인증 header */-->
-        <th:block th:insert="~{common/header::header}"></th:block>
-    
-        <div class="container mt-3">
-          
-            <h2>리뷰 상세</h2>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-            <form name="frmDelete" th:action="@{/review/delete}" method="post">
-                <input type="hidden" name="id" th:value="${review.id}">
-            </form>
+            <script th:src="@{/js/detail.js}"></script>
 
-            <div class="mb-3 mt-3 clearfix">
-                <span class="float-start me-2">id: [[${review.id}]]</span>
-                <span class="float-end ms-4">작성일: [[${#temporals.format(review.regdate, 'yyyy-MM-dd HH:mm:ss')}]]</span>
+          <title>리뷰 상세 - [[${review.subject}]]</title>
+        </head>
+        <body>
+            <!--*/ 인증 header */-->
+            <th:block th:insert="~{common/header::header}"></th:block>
+
+            <div class="container mt-3">
+
+                <h2>리뷰 상세</h2>
+
+                <form name="frmDelete" th:action="@{/review/delete}" method="post">
+                    <input type="hidden" name="id" th:value="${review.id}">
+                </form>
+
+                <div class="mb-3 mt-3 clearfix">
+                    <span class="float-start me-2">id: [[${review.id}]]</span>
+                    <span class="float-end ms-4">작성일: [[${#temporals.format(review.regdate, 'yyyy-MM-dd HH:mm:ss')}]]</span>
+                </div>
+
+                <div class="mb-3">레져 이름 : [[${review.leisure_name}]]</div>
+                <div class="mb-3">예약 날짜 : [[${review.reserve_date}]]</div>
+                <div class="mb-3">작성자 : [[${review.reserve_name}]]</div>
+                <div class="mb-3">작성자 id : [[${review.user_id.username}]]</div>
+
+                <div class="mb-3">
+                  <input type="text" class="form-control" id="subject" name="subject"th:value="${review.subject}" readonly/>
+                </div>
+                <div class="mb-3">
+                    <textarea class="form-control" rows="5" id="content" name="content" th:text="${review.content}" readonly></textarea>
+                </div>
+                <div class="mb-3 w-25">
+                    <input type="text" readonly class="form-control text-warning" value="★ 별점">
+                  <input type="text" class="form-control text-warning" name="star" id="star" th:value="${review.star}" readonly/>
+                </div>
+
+                <a class="btn btn-outline-dark" th:href="@{/review/update(id=${review.id})}" th:if="${logged_user.id == review.user_id.id}">수정</a>
+                <a class="btn btn-outline-dark" th:href="@{/review/list}">목록</a>
+                <button type="button" class="btn btn-outline-dark" id="btnDel" th:if="${logged_user.id == review.user_id.id}">삭제</button>
+
+
             </div>
-
-            <div class="mb-3">레져 이름 : [[${review.leisure_name}]]</div>
-            <div class="mb-3">예약 날짜 : [[${review.reserve_date}]]</div>
-            <div class="mb-3">작성자 : [[${review.reserve_name}]]</div>
-
-            <div class="mb-3">
-              <input type="text" class="form-control" id="subject" name="subject"th:value="${review.subject}" readonly>
-            </div>
-            <div class="mb-3">
-                <textarea class="form-control" rows="5" id="content" name="content" th:text="${review.content}" readonly></textarea>
-            </div>
-            <div class="mb-3 w-25">
-                <input type="text" readonly class="form-control text-warning" value="★ 별점">
-              <input type="text" class="form-control text-warning" name="star" id="star" th:value="${review.star}" readonly>
-            </div>
-  
-            <a class="btn btn-outline-dark" th:href="@{/review/update(id=${review.id})}" >수정</a>
-            <a class="btn btn-outline-dark" th:href="@{/review/list}">목록</a>
-            <button type="button" class="btn btn-outline-dark" id="btnDel">삭제</button>
-
-            
-        </div>
-    </body>
-</th:block>
+        </body>
+    </th:block>
 </html>
