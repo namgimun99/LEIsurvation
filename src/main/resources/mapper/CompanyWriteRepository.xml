@@ -14,7 +14,7 @@
     </insert>
 
     <select id="findById" resultType="com.lec.spring.domain.CompanyWrite">
-       Select
+        Select
         id,
         user_id,
         name,
@@ -24,5 +24,28 @@
         company
         WHERE
         id = #{id}
+    </select>
+
+    <update id="update" flushCache="true" parameterType="com.lec.spring.domain.CompanyWrite">
+        UPDATE company
+        SET name = #{name}, companyname= #{companyname}, address = #{address}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete" flushCache="true" parameterType="com.lec.spring.domain.CompanyWrite">
+        DELETE FROM company WHERE id = #{id}
+    </delete>
+
+    <select id="findBycompanyname" resultType="com.lec.spring.domain.CompanyWrite">
+        SELECT
+        id,
+        user_id,
+        name,
+        address,
+        companyname
+        FROM
+        company
+        WHERE
+        companyname = #{companyname}
     </select>
 </mapper>

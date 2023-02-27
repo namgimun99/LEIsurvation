@@ -16,9 +16,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <link rel="stylesheet" type="text/css" th:href="@{/css/leisure/common.css}">
-    <link rel="stylesheet" href="common.css">
 
-    <script th:src="@{/js/leisure/detail.js}"></script>
+    <script th:src="@{/js/detail.js}"></script>
   </head>
 
   <body>
@@ -28,66 +27,44 @@
       <div id = dimage>
 
       </div>
-    <section>
-      <form name="frmDelete" th:action="@{/leisure/delete}" method="post">
-        <input type="hidden" name="id" th:value="${dto.id}">
-      </form>
+      <section>
+        <form name="frmDelete" th:action="@{/leisure/delete}" method="post">
+          <input type="hidden" name="id" th:value="${dto.id}">
+        </form>
 
-      <div class=detail>
-        <label>제목:</label>
-        <div class="border bg-light rounded p-2" >[[${dto.name}]]</div>
-      </div>
-      <div class=detail>
-        <label>평점:</label>
-        <div class="border bg-light rounded p-2" >[[${dto.avgstar}]]</div>
-      </div>
-      <div class=detail>
-        <label>가격:</label>
-        <div class="border bg-light rounded p-2" >[[${dto.price}]]</div>
-      </div>
-      <div class=detail>
-        <label>주소:</label>
-        <div class="border bg-light rounded p-2" >[[${dto.address}]]</div>
-      </div>
-      <div class=detail>
-        <label>소개:</label>
-        <div class="border bg-light rounded p-2" >[[${dto.content}]]</div>
-      </div>
-      <div id = dbutton>
-      <!-- 하단 링크 -->
-      <a class="btn btn-outline-dark" th:href="@{/leisure/listprice}">목록</a>
-      <a class="btn btn-outline-dark" th:href="@{/reserve/write(id=${dto.id})}">예약</a>
-      <button type="button" class="btn btn-outline-dark" id="BtnDel">삭제</button>
-      </div>
+        <div class=detail>
+          <label>제목:</label>
+          <div class="border bg-light rounded p-2" >[[${dto.name}]]</div>
+        </div>
+        <div class=detail>
+          <label>평점:</label>
+          <div class="border bg-light rounded p-2" >[[${dto.avgstar}]]</div>
+        </div>
+        <div class=detail>
+          <label>가격:</label>
+          <div class="border bg-light rounded p-2" >[[${dto.price}]]</div>
+        </div>
+        <div class=detail>
+          <label>주소:</label>
+          <div class="border bg-light rounded p-2" >[[${dto.address}]]</div>
+        </div>
+        <div class=detail>
+          <label>소개:</label>
+          <div class="border bg-light rounded p-2" >[[${dto.content}]]</div>
+        </div>
+        <div id = dbutton>
+          <!-- 하단 링크 -->
+          <a class="btn btn-outline-dark" th:href="@{/leisure/update(id=${dto.id})}">수정</a>
+          <a class="btn btn-outline-dark" th:href="@{/leisure/listprice}">목록</a>
+          <a class="btn btn-outline-dark" th:href="@{/reserve/write(id=${dto.id})}">예약</a>
+          <button type="button" class="btn btn-outline-dark" id="btnDel">삭제</button>
+        </div>
 
-      <!-- 하단 링크 -->
+        <!-- 하단 링크 -->
 
-    </section>
+      </section>
+    </div>
   </div>
-</div>
   </body>
 </th:block>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

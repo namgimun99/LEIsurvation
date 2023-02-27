@@ -1,10 +1,12 @@
+
+mypage
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
-<!-- <script th:if="${list == null} or ${#lists.size(list) <= 0}">
+<script th:if="${list == null} or ${#lists.size(list) <= 0}">
         alert("해당 정보가 삭제되거나 없습니다");
         history.back();
-    </script> -->
+    </script>
 
 
 <th:block th:if="${list} and ${#lists.size(list) > 0}" th:with="dto=${list[0]}">
@@ -16,9 +18,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <link rel="stylesheet" type="text/css" th:href="@{/css/leisure/common.css}">
-    <link rel="stylesheet" href="common.css">
 
-    <script th:src="@{/js/leisure/detail.js}"></script>
+    <script th:src="@{/js/detail.js}"></script>
   </head>
 
   <body>
@@ -29,10 +30,10 @@
 
       </div>
       <section>
-        <form name="frmDelete" th:action="@{/leisure/delete}" method="post">
+        <form name="frmDelete" th:action="@{/company/delete}" method="post">
           <input type="hidden" name="id" th:value="${dto.id}">
         </form>
-          <h3>프로필</h3>
+        <h3>프로필</h3>
         <div class=detail>
           <label>id:</label>
           <div class="border bg-light rounded p-2" >[[${dto.id}]]</div>
@@ -49,36 +50,12 @@
           <label>회사 주소:</label>
           <div class="border bg-light rounded p-2" >[[${dto.address}]]</div>
         </div>
-        <a class="btn btn-outline-dark" th:href="@{/leisure/write(company_id=${dto.id})}">레져등록</a>
-        <div class=detail>
+        <a class="btn btn-outline-dark" th:href="@{/company/update(id=${dto.id})}">정보 수정</a>
+        <button type="button" class="btn btn-outline-dark" id="btnDel">삭제</button>
 
-        </div>
       </section>
     </div>
   </div>
   </body>
 </th:block>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

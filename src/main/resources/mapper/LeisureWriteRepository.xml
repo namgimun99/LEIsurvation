@@ -15,21 +15,21 @@
 
     <sql id="Base">
         SELECT
-            id,
-            company_id,
-            name,
-            price,
-            content,
-            address,
-            avgstar
+        id,
+        company_id,
+        name,
+        price,
+        content,
+        address,
+        avgstar
         FROM
-            leisure
+        leisure
     </sql>
 
     <select id="findById" resultType="com.lec.spring.domain.LeisureWrite">
         <include refid="Base"/>
         WHERE
-            id = #{id}
+        id = #{id}
     </select>
 
     <select id="findprice" resultType="com.lec.spring.domain.LeisureWrite">
@@ -41,6 +41,12 @@
         <include refid="Base"/>
         ORDER BY id DESC
     </select>
+
+    <update id="update" flushCache="true" parameterType="com.lec.spring.domain.LeisureWrite">
+        UPDATE leisure
+        SET name = #{name}, price = #{price}, content = #{content}, address = #{address}
+        WHERE id = #{id}
+    </update>
 
     <delete id="delete" flushCache="true" parameterType="com.lec.spring.domain.LeisureWrite">
         DELETE FROM leisure WHERE id = #{id}

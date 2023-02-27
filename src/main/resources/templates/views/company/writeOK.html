@@ -1,3 +1,4 @@
+writeOk
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <script th:unless="${result > 0}">
@@ -6,7 +7,6 @@
   </script>
 <script th:if="${result > 0}" th:inline="javascript">
      alert("등록 성공");
-     location.href = "/company/mypage?id=[[${dto.id}]]";
+     location.href = "mypage?id=[[${dto.id}]]";
   </script>
 </html>
-

@@ -1,5 +1,6 @@
 package com.lec.spring.repository;
 
+import com.lec.spring.domain.CompanyWrite;
 import com.lec.spring.domain.LeisureWrite;
 
 import java.util.List;
@@ -14,4 +15,6 @@ public interface LeisureWriteRepository {
     List<LeisureWrite> findstar();
 
     int delete(LeisureWrite leisureWrite);
+
+    int update(LeisureWrite leisureWrite);
 }

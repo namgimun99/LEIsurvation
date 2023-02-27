@@ -4,8 +4,10 @@ package com.lec.spring.service;
 import com.lec.spring.domain.LeisureFileDTO;
 import com.lec.spring.domain.LeisureWrite;
 import com.lec.spring.domain.Review;
+import com.lec.spring.domain.User;
 import com.lec.spring.repository.LeisureFileRepository;
 import com.lec.spring.repository.LeisureWriteRepository;
+import com.lec.spring.repository.UserRepository;
 import com.lec.spring.util.U;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,14 +34,20 @@ public class LeisureService {
     private String uploadDir;
     private LeisureWriteRepository leisureWriteRepository;
 
+    private UserRepository userRepository;
+
     private LeisureFileRepository leisureFileRepository;
     @Autowired
     public LeisureService(SqlSession sqlSession){
         leisureWriteRepository = sqlSession.getMapper(LeisureWriteRepository.class);
+        userRepository = sqlSession.getMapper(UserRepository.class);
         leisureFileRepository = sqlSession.getMapper(LeisureFileRepository.class);
     }
 
-    public int leisureWrite(LeisureWrite leisureWrite){
+
+
+    public int leisureWrite(LeisureWrite leisureWrite,Map<String, MultipartFile> files){
+        addFiles(files, leisureWrite.getId());
         return leisureWriteRepository.save(leisureWrite);
     }
 
@@ -130,5 +138,9 @@ public class LeisureService {
             result = leisureWriteRepository.delete(leisureWrite);
         }
         return result;
+    }
+
+    public int update(LeisureWrite leisurewrite) {
+        return leisureWriteRepository.update(leisurewrite);
     }
 }

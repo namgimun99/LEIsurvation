@@ -23,6 +23,10 @@
   <div class="mb-3">사업자 이름: [[${dto.companyWrite.name}]]</div>
   <div class="mb-3">회사이름: [[${dto.companyWrite.companyname}]]</div>
   <div class="mb-3">회사주소: [[${dto.companyWrite.address}]]</div>
+<!--  추가-->
+  <a class="btn btn-outline-dark" th:href="@{/leisure/write(company_id=${dto.companyWrite.id})}">레져등록</a>
+  <a class="btn btn-outline-dark" th:href="@{/company/mypage(id=${dto.companyWrite.id})}">회사 정보</a>
+<!--  여기까지-->
 </div>
 
 
@@ -46,6 +50,9 @@
       <th rowspan="3">제목</th>
       <th>레저이름</th>
       <td>[[${dto.name}]]</td>
+<!--      추가-->
+      <th rowspan="3"><a class="btn btn-outline-dark" th:href="@{/leisure/detail(id=${dto.id})}">레저 정보</a></th>
+<!--    여기까지-->
     </tr>
     <tr>
       <th>레저주소</th>

@@ -4,7 +4,9 @@ import com.lec.spring.domain.LeisureFileDTO;
 import com.lec.spring.repository.LeisureFileRepository;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class LeisrefileService {
     private LeisureFileRepository leisureFileRepository;
 

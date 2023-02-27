@@ -1,9 +1,7 @@
 package com.lec.spring.service;
 
 
-import com.lec.spring.domain.Authority;
-import com.lec.spring.domain.CompanyWrite;
-import com.lec.spring.domain.LeisureWrite;
+import com.lec.spring.domain.*;
 import com.lec.spring.repository.AuthorityRepository;
 import com.lec.spring.repository.CompanyWriteRepository;
 import org.apache.ibatis.session.SqlSession;
@@ -51,5 +49,29 @@ public class CompanyService {
             list.add(companyWrite);
         }
         return list;
+    }
+
+    public int update(CompanyWrite companywrite) {return companyWriteRepository.update(companywrite);
+    }
+
+
+    public int deleteById(Long id) {
+        int result = 0;
+
+        CompanyWrite companyWrite = companyWriteRepository.findById(id);
+        if(companyWrite != null){
+            result = companyWriteRepository.delete(companyWrite);
+        }
+
+        return result;
+    }
+    private CompanyWrite findByUsername(String companyname) {
+        return companyWriteRepository.findBycompanyname(companyname);
+    }
+
+
+    public boolean isExist(String companyname){
+        CompanyWrite companyWrite = findByUsername(companyname);
+        return (companyWrite != null) ? true : false;
     }
 }

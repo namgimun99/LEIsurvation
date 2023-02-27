@@ -1,5 +1,7 @@
+
 package com.lec.spring.controller;
 
+import com.lec.spring.domain.CompanyWrite;
 import com.lec.spring.domain.LeisureWrite;
 import com.lec.spring.domain.LeisureWriteValidator;
 import com.lec.spring.service.LeisureService;
@@ -24,6 +26,7 @@ public class LeisureController {
     @Autowired
     private LeisureService leisureService;
 
+
     @GetMapping("/write")
     public void write(Long company_id, Model model){
         model.addAttribute("company_id", company_id);
@@ -37,7 +40,6 @@ public class LeisureController {
             Model model,
             RedirectAttributes redirectAttributes){
         if(result.hasErrors()){
-            redirectAttributes.addFlashAttribute("company_id", leisureWrite.getCompany_id());
             redirectAttributes.addFlashAttribute("name", leisureWrite.getName());
             redirectAttributes.addFlashAttribute("price", leisureWrite.getPrice());
             redirectAttributes.addFlashAttribute("address", leisureWrite.getAddress());
@@ -52,8 +54,9 @@ public class LeisureController {
             }
             return "redirect:/leisure/write";
         }
-        model.addAttribute("result", leisureService.leisureWrite(leisureWrite));
+        model.addAttribute("result", leisureService.leisureWrite(leisureWrite,files));
         model.addAttribute("dto", leisureWrite);
+
         return "leisure/writeOK";
     }
 
@@ -77,11 +80,41 @@ public class LeisureController {
         model.addAttribute("listprice", leisureService.listprice());
     }
 
+
+    @GetMapping("/update")
+    public void update(long id, Model model) {
+        model.addAttribute("list", leisureService.leisureDetail(id));
+    }
+
+    @PostMapping("/update")
+    public String updateOk(@Valid LeisureWrite leisurewrite,
+                           BindingResult result,
+                           Model model,
+                           RedirectAttributes redirectAttrs) {
+        // validation
+        if (result.hasErrors()) {
+            redirectAttrs.addFlashAttribute("name", leisurewrite.getName());
+            redirectAttrs.addFlashAttribute("price", leisurewrite.getPrice());
+            redirectAttrs.addFlashAttribute("content", leisurewrite.getContent());
+            redirectAttrs.addFlashAttribute("address", leisurewrite.getAddress());
+
+            List<FieldError> errList = result.getFieldErrors();
+            for (FieldError err : errList) {
+                redirectAttrs.addFlashAttribute("error", err.getCode());
+                break;
+            }
+            return "redirect:/leisure/update?id=" + leisurewrite.getId();
+        }
+
+        model.addAttribute("result", leisureService.update(leisurewrite));
+        model.addAttribute("dto", leisurewrite);
+
+        return "leisure/updateOk";
+    }
+    @PostMapping("/delete")
     public String deleteOk(long id, Model model) {
         model.addAttribute("result", leisureService.deleteById(id));
-        return "leisure/delete";
+        return "leisure/deleteOk";
     }
 }
-
-
 

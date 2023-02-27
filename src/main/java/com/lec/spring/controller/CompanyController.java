@@ -1,9 +1,12 @@
+
 package com.lec.spring.controller;
 
 
 import com.lec.spring.config.PrincipalDetails;
 import com.lec.spring.domain.CompanyWrite;
 import com.lec.spring.domain.CompanyWriteValidator;
+import com.lec.spring.domain.ReserveWrite;
+import com.lec.spring.domain.Review;
 import com.lec.spring.service.CompanyService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,17 +41,21 @@ public class CompanyController {
                           Model model,
                           RedirectAttributes redirectAttributes) {
 
-        Long userId = ((PrincipalDetails)(SecurityContextHolder.getContext().getAuthentication().getPrincipal())).getUser().getId();
+        Long userId = ((PrincipalDetails) (SecurityContextHolder.getContext().getAuthentication().getPrincipal())).getUser().getId();
         companyWrite.setUser_id(String.valueOf(userId));
 
-        if(result.hasErrors()){
+        if(!result.hasFieldErrors("companyname") && companyService.isExist(companyWrite.getCompanyname())){
+            result.rejectValue("companyname","이미 존재하는 회사입니다.");
+        }
+
+        if (result.hasErrors()) {
             redirectAttributes.addFlashAttribute("name", companyWrite.getName());
             redirectAttributes.addFlashAttribute("address", companyWrite.getAddress());
             redirectAttributes.addFlashAttribute("companyname", companyWrite.getCompanyname());
 
             List<FieldError> errList = result.getFieldErrors();
 
-            for(FieldError err : errList){
+            for (FieldError err : errList) {
                 redirectAttributes.addFlashAttribute("error", err.getCode());
                 break;
             }
@@ -60,12 +67,48 @@ public class CompanyController {
     }
 
     @InitBinder
-    public void initBinder(WebDataBinder binder){
+    public void initBinder(WebDataBinder binder) {
         binder.setValidator(new CompanyWriteValidator());
     }
 
     @GetMapping("/mypage")
-    public void detail(long id, Model model){
+    public void detail(long id, Model model) {
         model.addAttribute("list", companyService.companyDetail(id));
+    }
+
+    @GetMapping("/update")
+    public void update(long id, Model model) {
+        model.addAttribute("list", companyService.companyDetail(id));
+    }
+
+    @PostMapping("/update")
+    public String updateOk(@Valid CompanyWrite companywrite,
+                           BindingResult result,
+                           Model model,
+                           RedirectAttributes redirectAttrs) {
+        // validation
+        if (result.hasErrors()) {
+            redirectAttrs.addFlashAttribute("name", companywrite.getName());
+            redirectAttrs.addFlashAttribute("companyname", companywrite.getCompanyname());
+            redirectAttrs.addFlashAttribute("address", companywrite.getAddress());
+
+            List<FieldError> errList = result.getFieldErrors();
+            for (FieldError err : errList) {
+                redirectAttrs.addFlashAttribute("error", err.getCode());
+                break;
+            }
+            return "redirect:/company/update?id=" + companywrite.getId();
+        }
+
+        model.addAttribute("result", companyService.update(companywrite));
+        model.addAttribute("dto", companywrite);
+
+        return "company/updateOk";
+    }
+
+    @PostMapping("/delete")
+    public String deleteOk(long id, Model model) {
+        model.addAttribute("result", companyService.deleteById(id));
+        return "company/deleteOk";
     }
 }

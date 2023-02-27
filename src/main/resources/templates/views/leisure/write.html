@@ -11,26 +11,28 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <script th:src="@{/js/leisure/write.js}"></script>
+    <script th:src="@{/js/write.js}"></script>
 
     <title>레져 등록</title>
 </head>
 <body>
-    <h2 id = wh2>레져 등록</h2>
-    <div id = write>
-        <div id = wimage>
-            <div id = image>
+<h2 id = wh2>레져 등록</h2>
+<div id = write>
+    <div id = wimage>
+        <div id = files>
+
+
+        </div>
+        <div id = wimgbtn>
+            <button type = button id = btnAdd class="btn btn-outline-dark">이미지 등록</button>
+        </div>
+
+        <div class="row mt-5" th:if="${error }">
+            <div class="col-12 text-danger" th:text="${error }">
+                <!--/* 에러메세지 */-->
             </div>
-            <div id = wimgbtn>
-                <button type = button id = btnAdd class="btn btn-outline-dark">이미지 등록</button>
-            </div>
-            
-    <div class="row mt-5" th:if="${error }">
-        <div class="col-12 text-danger" th:text="${error }">
-            <!--/* 에러메세지 */-->
         </div>
     </div>
-</div>
     <form th:action="@{/leisure/write}" method="post" enctype="Multipart/form-data">
         <div class = write>
             <input type="hidden" class="form-control" id="company_id" placeholder="company_id" name="company_id" th:value="${company_id}">
@@ -55,11 +57,11 @@
             <label for="content">소개:</label>
             <input type="text" class="form-control" id="content" placeholder="레저 소개" name="content" th:value="${content}">
         </div>
-    
-    <div id = wbutton>
-        <button type="submit" class="btn btn-outline-dark">등록완료</button>
-        <a class="btn btn-outline-dark" th:href="@{/leisure/listprice}">목록</a>
-    </div>
+
+        <div id = wbutton>
+            <button type="submit" class="btn btn-outline-dark">등록완료</button>
+            <a class="btn btn-outline-dark" th:href="@{/leisure/listprice}">목록</a>
+        </div>
     </form>
 </div>
 </div>
