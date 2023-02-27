@@ -35,7 +35,6 @@ public class LeisureService {
     private LeisureWriteRepository leisureWriteRepository;
 
     private UserRepository userRepository;
-
     private LeisureFileRepository leisureFileRepository;
     @Autowired
     public LeisureService(SqlSession sqlSession){
@@ -143,4 +142,5 @@ public class LeisureService {
     public int update(LeisureWrite leisurewrite) {
         return leisureWriteRepository.update(leisurewrite);
     }
+
 }

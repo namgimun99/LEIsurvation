@@ -1,9 +1,10 @@
 
 package com.lec.spring.controller;
 
-import com.lec.spring.domain.CompanyWrite;
+
 import com.lec.spring.domain.LeisureWrite;
 import com.lec.spring.domain.LeisureWriteValidator;
+import com.lec.spring.domain.Review;
 import com.lec.spring.service.LeisureService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ public class LeisureController {
     @Autowired
     private LeisureService leisureService;
 
+    private Review review;
 
     @GetMapping("/write")
     public void write(Long company_id, Model model){

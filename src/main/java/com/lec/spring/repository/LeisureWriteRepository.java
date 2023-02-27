@@ -2,6 +2,7 @@ package com.lec.spring.repository;
 
 import com.lec.spring.domain.CompanyWrite;
 import com.lec.spring.domain.LeisureWrite;
+import com.lec.spring.domain.Review;
 
 import java.util.List;
 
@@ -17,4 +18,5 @@ public interface LeisureWriteRepository {
     int delete(LeisureWrite leisureWrite);
 
     int update(LeisureWrite leisureWrite);
+
 }

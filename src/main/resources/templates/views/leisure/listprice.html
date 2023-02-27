@@ -11,10 +11,13 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script th:src="@{/js/liststar.js}"></script>
+    <script th:src="@{/js/list.js}"></script>
     <title>레저 리스트</title>
 </head>
 <body>
+
+<th:block th:insert="~{common/header::header}"></th:block>
+
 <div id = lstar>
     <div class="row">
         <div class="col-12">
