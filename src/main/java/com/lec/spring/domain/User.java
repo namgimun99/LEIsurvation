@@ -21,6 +21,7 @@ public class User {
     @JsonIgnore
     private LocalDateTime regdate;
 
+
     @ToString.Exclude
     @Builder.Default
     @JsonIgnore

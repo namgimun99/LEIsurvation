@@ -123,14 +123,25 @@ public class ReserveController {
     @GetMapping("/member")
     public void list(Long user_id, Model model){
         model.addAttribute("list",reserveService.list(user_id));
+        model.addAttribute("list2",reserveService.won(user_id));
+        System.out.println(user_id+"zzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+        System.out.println(reserveService.won(user_id));
+
     }
+
+
+
+
 
 
 
     @GetMapping("/company")
-    public void company(Long user_id, Model model){
-        model.addAttribute("list",reserveService.listCompany(user_id));
+    public void company(Long company_id, Model model){
+        model.addAttribute("list",reserveService.listCompany(company_id));
     }
+
+
+
 
 
     @InitBinder

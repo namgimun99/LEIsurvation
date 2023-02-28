@@ -3,6 +3,7 @@ package com.lec.spring.service;
 
 import com.lec.spring.domain.ReserveWrite;
 import com.lec.spring.domain.LeisureWrite;
+import com.lec.spring.domain.User;
 import com.lec.spring.repository.ReserveRepository;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,10 +92,13 @@ public class ReserveService {
             return reserveRepository.findAll(user_id);
     }
 
-    public List<LeisureWrite> listCompany(Long user_id) {
-        return reserveRepository.findAllCompany(user_id);
+    public List<LeisureWrite> listCompany(Long company_id) {
+        return reserveRepository.findAllCompany(company_id);
     }
 
+    public List<User> won(Long user_id) {
+        return reserveRepository.findAll2(user_id);
+    }
 
 
 

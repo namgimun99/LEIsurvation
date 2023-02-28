@@ -32,10 +32,7 @@
         id = #{id}
     </select>
 
-    <select id="findprice" resultType="com.lec.spring.domain.LeisureWrite">
-        <include refid="Base"/>
-        ORDER BY price ASC
-    </select>
+
 
     <select id="findstar" resultType="com.lec.spring.domain.LeisureWrite">
         <include refid="Base"/>
@@ -52,4 +49,51 @@
         DELETE FROM leisure WHERE id = #{id}
     </delete>
 
+
+    <resultMap id="mapCom" type="com.lec.spring.domain.LeisureWrite">
+
+        <result column="s_company_id" property="company_id"/>
+        <result column="s_id" property="id"/>
+        <result column="s_avgstar" property="avgstar"/>
+        <collection property="review" resultMap="mapCompany"/>
+
+    </resultMap>
+
+
+    <resultMap id="mapCompany" type="com.lec.spring.domain.Review">
+        <result column="d_id" property="id"/>
+        <result column="d_reservation_id" property="reservation_id"/>
+        <result column="d_subject" property="subject"/>
+        <result column="d_content" property="content"/>
+        <result column="d_regdate" property="regdate"/>
+        <result column="d_star" property="star"/>
+    </resultMap>
+
+    <select id="findAllCompany"  resultMap="mapCom">
+
+        SELECT
+        d.id "d_id",
+        d.reservation_id "d_reservation_id",
+        d.subject "d_subject",
+        d.content "d_content",
+        d.regdate "d_regdate",
+        d.star "d_star",
+        s.address "s_address",
+        s.name "s_name",
+        s.company_id "s_company_id",
+        s.id "s_id",
+        s.avgstar "s_avgstar"
+        FROM
+        review d, leisure s
+        WHERE
+        d.id = s.company_id
+        AND s.id=1
+
+        Select
+    </select>
+
+    <select id="findprice" resultType="com.lec.spring.domain.LeisureWrite">
+        <include refid="Base"/>
+        ORDER BY price ASC
+    </select>
 </mapper>

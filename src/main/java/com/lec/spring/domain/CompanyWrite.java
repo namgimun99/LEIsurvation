@@ -17,5 +17,5 @@ public class CompanyWrite {
 
 
     private String user_id;
-
+    private User user;
 }

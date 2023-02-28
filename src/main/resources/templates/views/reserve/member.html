@@ -25,8 +25,14 @@
   <div style="background-color:gray" th:each="dto:${list[0]}" id="memhead">
     <h3>프로필</h3>
     <div class="mb-3" th:with="user=${#authentication.getPrincipal().getUser()}">유저 아이디: [[${user.username}]]</div>
-    <div sec:authorize="hasAnyRole('COMPANY')"><a class="btn btn-outline-dark" id="leis"  th:href="@{/reserve/company(user_id=${dto.user_id})}">등록한 레저 목록 보기</a></div>
   </div>
+
+
+  <div style="background-color:white" th:each="dto2:${list2}" class="memhead">
+    <div sec:authorize="hasAnyRole('COMPANY')"><a class="btn btn-outline-dark" th:href="@{/leisure/write(company_id=${dto2.id})}">컴퍼니 이름: -[[${dto2.companyname}]]- 레저목록 등록하기</a></div>
+    <div sec:authorize="hasAnyRole('COMPANY')"><a class="btn btn-outline-dark" th:href="@{/reserve/company(company_id=${dto2.id})}"> -[[${dto2.companyname}]]- 등록한 레저 목록 보기</a></div>
+  </div>
+
   <hr>
   <h2>예약 목록</h2>
 

@@ -3,6 +3,7 @@ package com.lec.spring.repository;
 
 import com.lec.spring.domain.ReserveWrite;
 import com.lec.spring.domain.LeisureWrite;
+import com.lec.spring.domain.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,8 +21,9 @@ public interface ReserveRepository {
 
     List<ReserveWrite> findAll(Long user_id);
 
-    List<LeisureWrite> findAllCompany(Long user_id);
+    List<LeisureWrite> findAllCompany(Long company_id);
 
 
+    List<User> findAll2(Long user_id);
 
 }
