@@ -57,6 +57,6 @@
     </delete>
 
     <delete id="delete" flushCache="true">
-        DELETE FROM review_file WHERE id = #{review_id}
+        DELETE FROM review_file WHERE id = #{id}
     </delete>
 </mapper>

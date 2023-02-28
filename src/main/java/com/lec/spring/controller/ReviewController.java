@@ -49,15 +49,13 @@ public class ReviewController {
     }
 
     @PostMapping("/write")
-    public String writeOk(@Valid Review review,
-                          BindingResult result,
-                          Model model,
-                          RedirectAttributes redirectAttrs) {
-
-        // 현재 로그인한 사용자
-//        User user_id = ((PrincipalDetails)(SecurityContextHolder.getContext().getAuthentication().getPrincipal())).getUser();
-//        review.setUser_id(user_id);
-
+    public String writeOk(
+            @RequestParam Map<String, MultipartFile> files
+            , @Valid Review review
+            , BindingResult result
+            , Model model
+            , RedirectAttributes redirectAttrs
+    ) {
         // validation
         if(result.hasErrors()){
             redirectAttrs.addFlashAttribute("subject", review.getSubject());
@@ -72,7 +70,7 @@ public class ReviewController {
 
         }
 
-        model.addAttribute("result", reviewService.review(review)); //dml
+        model.addAttribute("result", reviewService.review(review, files)); //dml
         model.addAttribute("reviewDto", review); // id값
 
         return "review/writeOk";
@@ -86,14 +84,16 @@ public class ReviewController {
 
     @GetMapping("/update")
     public void update(Long id, Model model) {
-        model.addAttribute("reviewList", reviewService.detail(id));
+        model.addAttribute("reviewList", reviewService.selectById(id));
     }
 
     @PostMapping("/update")
-    public String updateOk(@Valid Review review,
-                           BindingResult result,
-                           Model model,
-                           RedirectAttributes redirectAttrs) {
+    public String updateOk( @RequestParam Map<String, MultipartFile> files // 새로 추가될 첨부파일들
+                            ,Long[] delfile // 삭제될 파일들
+                            ,@Valid Review review
+                            ,BindingResult result
+                            ,Model model
+                            ,RedirectAttributes redirectAttrs) {
         // validation
         if(result.hasErrors()){
             redirectAttrs.addFlashAttribute("subject", review.getSubject());
@@ -107,7 +107,7 @@ public class ReviewController {
             return "redirect:/review/update?id=" + review.getId();
         }
 
-        model.addAttribute("result", reviewService.update(review));
+        model.addAttribute("result", reviewService.update(review, files, delfile));
         model.addAttribute("review", review);
 
         return "review/updateOk";
