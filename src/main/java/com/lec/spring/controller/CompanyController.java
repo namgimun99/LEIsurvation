@@ -62,6 +62,7 @@ public class CompanyController {
             return "redirect:/company/write";
         }
         model.addAttribute("result", companyService.companyWrite(companyWrite));
+        model.addAttribute("result", companyService.companyJoin(companyWrite));
         model.addAttribute("dto", companyWrite);
         return "company/writeOK";
     }

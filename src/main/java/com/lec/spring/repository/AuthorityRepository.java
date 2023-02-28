@@ -1,6 +1,7 @@
 package com.lec.spring.repository;
 
 import com.lec.spring.domain.Authority;
+import com.lec.spring.domain.CompanyWrite;
 import com.lec.spring.domain.User;
 
 import java.util.List;
@@ -11,6 +12,7 @@ public interface AuthorityRepository {
     Authority findByName(String name);
 
     List<Authority> findByUser(User user);
+    List<Authority> findByUser2(CompanyWrite companyWrite);
 
     // 해당 사용자(user_id)에 권한(auth_id) 추가
     int addAuthority(Long user_id, Long auth_id);

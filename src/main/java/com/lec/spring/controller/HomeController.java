@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/")
-public class MainController {
-    public MainController() {
+public class HomeController {
+    public HomeController() {
         System.out.println(getClass().getName() + "() 생성");
     }
 
