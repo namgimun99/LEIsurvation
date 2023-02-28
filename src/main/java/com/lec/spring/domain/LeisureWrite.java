@@ -11,7 +11,7 @@ import java.util.List;
 @Builder
 public class LeisureWrite {
     private Long id;
-    private String company_id;
+    private int company_id;
     private String name;
     private Long price;
     private String content;
@@ -23,5 +23,6 @@ public class LeisureWrite {
     private List<LeisureFileDTO> files = new ArrayList<>();
 
     private CompanyWrite companyWrite;
+    private Review review;
 
 }

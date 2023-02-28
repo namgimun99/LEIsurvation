@@ -41,6 +41,7 @@ public class LeisureController {
             BindingResult result,
             Model model,
             RedirectAttributes redirectAttributes){
+        int num1 = leisureWrite.getCompany_id();
         if(result.hasErrors()){
             redirectAttributes.addFlashAttribute("name", leisureWrite.getName());
             redirectAttributes.addFlashAttribute("price", leisureWrite.getPrice());
@@ -54,7 +55,7 @@ public class LeisureController {
                 redirectAttributes.addFlashAttribute("error", err.getCode());
                 break;
             }
-            return "redirect:/leisure/write";
+            return "redirect:/leisure/write?company_id="+num1;
         }
         model.addAttribute("result", leisureService.leisureWrite(leisureWrite,files));
         model.addAttribute("dto", leisureWrite);
