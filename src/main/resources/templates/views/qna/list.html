@@ -39,25 +39,25 @@
 
 
 <table class="table table-hover">
-  <thead class="table-success">
-  <tr>
+  <thead style="background-color:black">
+  <tr style="color:white">
     <th>#</th>
     <th>제목</th>
     <th>등록자</th>
     <th>등록일</th>
-    <th><a class="btn btn-outline-dark" th:href="@{/qna/write}">작성</a>
-    </th>
+    <th></th>
   </tr>
 
   </thead>
   <tbody>
 
-  <tr th:each="dto:${list}" >
+  <tr th:each="dto:${list}">
     <!--이 위에는 그냥 목록에서 id 타고 detail 로 들어가는 것 -->
     <td>[[${dto.id}]]</td>
-    <td><a th:href="@{/qna/detail(id=${dto.id})}">[[${dto.subject}]]</a></td>
+    <td>[[${dto.subject}]]</td>
     <td>[[${dto.user_id}]]</td>
     <td>[[${#temporals.format(dto.regdate, 'yyyy-MM-dd HH:mm:ss')}]]</td>
+    <td><a class="btn btn-outline-dark" th:href="@{/qna/detail(id=${dto.id})}">상세보기</a></td>
     <td></td>
 
 
@@ -69,6 +69,7 @@
 
 </div>
 
+<a class="btn btn-outline-dark" th:href="@{/qna/write}">작성</a>
 
 <!-- pagination -->
 <th:block th:insert="~{qna/pagination::pagination}"></th:block>

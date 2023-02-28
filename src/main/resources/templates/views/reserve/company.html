@@ -15,9 +15,9 @@
 </head>
 <body>
 <th:block th:insert="~{common/header::header}"></th:block>
-<br><hr>
+<br>
 
-<div style="background-color:gray" th:each="dto:${list[0]}" id="comhead">
+<div th:each="dto:${list[0]}" id="comhead">
   <h3>프로필</h3>
   <br>
   <div class="mb-3">사업자 이름: [[${dto.companyWrite.name}]]</div>
@@ -26,6 +26,7 @@
 <!--  추가-->
   <a class="btn btn-outline-dark" th:href="@{/leisure/write(company_id=${dto.companyWrite.id})}">레져등록</a>
   <a class="btn btn-outline-dark" th:href="@{/company/mypage(id=${dto.companyWrite.id})}">회사 정보</a>
+  <button type="button" style="float:right" class="btn btn-outline-dark" onclick="history.back()">돌아가기</button>
 <!--  여기까지-->
 </div>
 
@@ -35,17 +36,13 @@
   <thead class="table-success">
 
 
-  <div th:each="dto:${list[0]}">
-    <tr>
-      <td style="width:150px"><button type="button" style="float:right" class="btn btn-outline-dark" onclick="history.back()">돌아가기</button></td>
-    </tr>
-  </div>
+
   <hr>
 
   </thead>
 
   <tbody>
-  <table th:each="dto:${list}" style="text-align:center">
+  <table th:each="dto:${list}" style="text-align:center" id="lbody">
     <tr>
       <th rowspan="3">제목</th>
       <th>레저이름</th>

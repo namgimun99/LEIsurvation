@@ -19,22 +19,22 @@
 <body>
 <th:block th:insert="~{common/header::header}"></th:block>
 
-<h2>목록입니다.</h2>
 </hr>
 <table class="table table-hover">
   <thead class="table-success">
   <div style="background-color:gray" th:each="dto:${list[0]}" id="memhead">
     <h3>프로필</h3>
     <div class="mb-3" th:with="user=${#authentication.getPrincipal().getUser()}">유저 아이디: [[${user.username}]]</div>
-    <td rowspan="3" style="width:150px" sec:authorize="hasAnyRole('COMPANY')"><a class="btn btn-outline-dark"  th:href="@{/reserve/company(user_id=${dto.user_id})}">등록한 레저 목록 보기</a></td>
+    <div sec:authorize="hasAnyRole('COMPANY')"><a class="btn btn-outline-dark" id="leis"  th:href="@{/reserve/company(user_id=${dto.user_id})}">등록한 레저 목록 보기</a></div>
   </div>
   <hr>
+  <h2>예약 목록</h2>
+
   </thead>
   <tbody>
-  <table th:each="dto:${list}" style="text-align:center">
+  <table th:each="dto:${list}" style="text-align:center" id="lbody">
 
       <tr>
-        <th rowspan="5">제목</th>
         <th>이름</th>
         <td>[[${dto.leisureWrite.name}]]</td>
         <td rowspan="5" style="width:150px"><a class="btn btn-outline-dark" th:href="@{/reserve/detail(id=${dto.id})}">예약수정</a></td>
