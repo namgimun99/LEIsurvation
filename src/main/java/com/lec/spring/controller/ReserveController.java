@@ -124,8 +124,6 @@ public class ReserveController {
     public void list(Long user_id, Model model){
         model.addAttribute("list",reserveService.list(user_id));
         model.addAttribute("list2",reserveService.won(user_id));
-        System.out.println(user_id+"zzzzzzzzzzzzzzzzzzzzzzzzzzzz");
-        System.out.println(reserveService.won(user_id));
 
     }
 

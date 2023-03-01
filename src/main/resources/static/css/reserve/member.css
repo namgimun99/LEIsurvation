@@ -7,8 +7,12 @@
     td:last-child{
       width:700px;
     }
-    #memhead{
-      padding:20px
+    .memhead{
+      padding:10px;
+      border:2px solid black;
+      float:center;
+      width:785px;
+      margin :20px 0px 0px 350px;
     }
     h1{
     width:400px;
@@ -20,11 +24,6 @@
     margin : 0px 0px 0px 180px;
 }
 #memhead{
-width:1200px;
-        margin : 50px 0px 0px 180px;
-}
-
-.memhead{
 width:1200px;
         margin : 50px 0px 0px 180px;
 }

@@ -161,6 +161,8 @@
 
     <resultMap id="mapCompany1" type="com.lec.spring.domain.User">
         <result column="user_id" property="id"/>
+        <result column="u_username" property="username"/>
+
     </resultMap>
 
     <select id="findAll2"  resultMap="mapCom1">
@@ -169,7 +171,8 @@
         c.name "c_name",
         c.companyname "c_companyname",
         c.address "c_address",
-        u.id "user_id"
+        u.id "user_id",
+        u.username "u_username"
         FROM
         company c, user u
         WHERE  u.id= c.user_id

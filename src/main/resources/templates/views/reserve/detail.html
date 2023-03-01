@@ -13,12 +13,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" th:href="@{/css/common.css}">
     <script th:src="@{/js/detail.js}"></script>
-    <title>작성</title>
+
+
+
+    <title>예약 세부사항</title>
 </head>
 <body>
 <th:block th:insert="~{common/header::header}"></th:block>
+<h3>예약 세부사항</h3>
 
-<br>
 <div style="margin-top:100px" th:if="${error}">
     <div style="color:red" th:text="${error}">
     </div>
@@ -72,5 +75,5 @@
 
 
 </body>
-<!--</th:block>-->
+</th:block>
 </html>
