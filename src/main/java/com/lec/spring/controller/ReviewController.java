@@ -79,6 +79,7 @@ public class ReviewController {
     @GetMapping("/detail")
     public void detail(Long id, Model model) {
         model.addAttribute("reviewList", reviewService.detail(id));
+        model.addAttribute("conPath", U.getRequest().getContextPath());
 
     }
 

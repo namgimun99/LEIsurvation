@@ -19,6 +19,11 @@
 
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+            <script th:inline="javascript">
+                const conPath = [[${conPath}]];
+                const logged_id = [[${logged_user.id}]];
+            </script>
+
             <script th:src="@{/js/review/detail.js}"></script>
 
           <title>리뷰 상세 - [[${review.subject}]]</title>
@@ -78,7 +83,8 @@
                 <a class="btn btn-outline-dark" th:href="@{/review/list}">목록</a>
                 <button type="button" class="btn btn-outline-dark" id="btnDel" th:if="${logged_user.id == review.user_id.id}">삭제</button>
 
-
+                <!-- 댓글 -->
+                <th:block th:insert="~{review/comment::comment}"></th:block>
             </div>
         </body>
     </th:block>
