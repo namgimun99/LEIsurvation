@@ -11,7 +11,7 @@ public interface LeisureFileRepository {
 
     int save(LeisureFileDTO file);
 
-    List<LeisureFileDTO> findByWrite(Long writeId);
+    List<LeisureFileDTO> findByLeisure(Long Leisure_id);
 
     LeisureFileDTO findById(Long id);
 

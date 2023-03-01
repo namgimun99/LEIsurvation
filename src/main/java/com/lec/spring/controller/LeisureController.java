@@ -27,8 +27,6 @@ public class LeisureController {
     @Autowired
     private LeisureService leisureService;
 
-    private Review review;
-
     @GetMapping("/write")
     public void write(Long company_id, Model model){
         model.addAttribute("company_id", company_id);
@@ -41,8 +39,10 @@ public class LeisureController {
             BindingResult result,
             Model model,
             RedirectAttributes redirectAttributes){
+
         int num1 = leisureWrite.getCompany_id();
         if(result.hasErrors()){
+
             redirectAttributes.addFlashAttribute("name", leisureWrite.getName());
             redirectAttributes.addFlashAttribute("price", leisureWrite.getPrice());
             redirectAttributes.addFlashAttribute("address", leisureWrite.getAddress());

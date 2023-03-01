@@ -18,6 +18,8 @@ public class LeisureWrite {
     private String address;
     private double avgstar;
 
+    private User user_id;
+
     @ToString.Exclude
     @Builder.Default
     private List<LeisureFileDTO> files = new ArrayList<>();

@@ -14,5 +14,5 @@ public class LeisureFileDTO {
     private Long leisure_id;
     private String source;
     private String file;
-    private boolean isImg;
+    private boolean isImage;
 }

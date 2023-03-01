@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<script th:unless="${result > 0}">
+    alert("삭제가 실패하였습니다.");
+    history.back();
+</script>
+<script th:if="${result>0}"  >
+
+    alert("삭제가 완료되었습니다.");
+    location.href="listprice";
+</script>
+</html>
