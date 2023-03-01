@@ -60,15 +60,13 @@
     </select>
 
     <select id="findAll" resultType="com.lec.spring.domain.Review">
-        SELECT
-            r.id, reservation_id, r.user_id, subject, r.content, r.regdate, star, l.name AS leisure_name, rs.`date` AS reserve_date, rs.name AS reserve_name,
-            l.id AS leisure_id, lf.file AS min_leisure_file
-        FROM
-            review r INNER JOIN reservation rs ON (r.reservation_id = rs.id)
-                     INNER JOIN leisure l ON (rs.leisure_id  = l.id)
-                     INNER JOIN (SELECT leisure_id, min(id) AS leisure_file_id FROM leisure_file GROUP BY leisure_id) m_lf ON (l.id = m_lf.leisure_id)
-                     INNER JOIN leisure_file lf ON (lf.leisure_id = m_lf.leisure_id AND lf.id = m_lf.leisure_file_id)
-        ORDER BY r.id DESC
+        SELECT r.id, reservation_id, r.user_id, subject, r.content, r.regdate, star, l.name AS leisure_name, rs.`date` AS reserve_date, rs.name AS reserve_name,
+               l.id AS leisure_id, lf.file AS min_leisure_file
+        FROM review r INNER JOIN reservation rs ON (r.reservation_id = rs.id)
+                      INNER JOIN leisure l ON (rs.leisure_id  = l.id)
+                      LEFT JOIN (SELECT leisure_id, min(id) AS leisure_file_id FROM leisure_file GROUP BY leisure_id) m_lf ON (l.id = m_lf.leisure_id)
+                      LEFT JOIN leisure_file lf ON (lf.leisure_id = m_lf.leisure_id AND lf.id = m_lf.leisure_file_id)
+        ORDER BY r.id DESC;
     </select>
 
     <select id ="findByRSId" resultType="com.lec.spring.domain.Review">
