@@ -32,15 +32,15 @@
 <div id = lbody>
     <h2>레저 목록</h2>
     <!-- 목록 -->
-    <table th:each="dto : ${listprice}">
+    <table class="border border-4" th:each="dto : ${listprice}">
 
         <tbody id = tlist>
 
         <tr>
             <td id = td1> 이미지</td>
-            <td id = td2><a th:href="@{/leisure/detail(id=${dto.id})}">[[${dto.name}]]</a></td>
-            <td id = td3>\[[${dto.price}]]</td>
-            <td id = td4>[[${dto.avgstar}]]</td>
+            <td id = td2>[[${dto.name}]]</td>
+            <td id = td3>[[${dto.price}]]</td>
+            <td id = td4><a class="btn btn-outline-dark" th:href="@{/leisure/detail(id=${dto.id})}">상세 정보</a></td>
         </tr>
 
         </tbody>

@@ -2,10 +2,6 @@
     margin:150px 0px 0px 560px;
     width : 450px;
     height : 500px;
-    border-width: 5px;
-    border-color: blue;
-    border-style: solid;
-    background-color: skyblue;
 }
 
 #ch2{
@@ -13,9 +9,9 @@
     margin:auto;
 }
 #cwrite{
-    margin:auto;
+    margin:margin:150px 0px 0px 580px;;
     width : 350px;
-    height : 400px;
+    height : 310px;
 }
 
 .cwrite{

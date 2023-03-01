@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<!-- <script th:if="${list == null} or ${#lists.size(list) <= 0}">
+ <script th:if="${list == null} or ${#lists.size(list) <= 0}">
         alert("해당 정보가 삭제되거나 없습니다");
         history.back();
-    </script> -->
+    </script>
 
 
 <th:block th:if="${list} and ${#lists.size(list) > 0}" th:with="dto=${list[0]}">
@@ -28,7 +29,7 @@
       <div id = dimage>
 
       </div>
-      <section>
+      <section class="border border-4">
         <form name="frmDelete" th:action="@{/leisure/delete}" method="post">
           <input type="hidden" name="id" th:value="${dto.id}">
         </form>
@@ -55,14 +56,11 @@
         </div>
         <div id = dbutton>
           <!-- 하단 링크 -->
-          <a class="btn btn-outline-dark" th:href="@{/leisure/update(id=${dto.id})}">수정</a>
+          <a class="btn btn-outline-dark" sec:authorize="hasAnyRole('ADMIN','COMPANY)" th:href="@{/leisure/update(id=${dto.id})}">수정</a>
           <a class="btn btn-outline-dark" th:href="@{/leisure/listprice}">목록</a>
           <a class="btn btn-outline-dark" th:href="@{/reserve/write(id=${dto.id})}">예약</a>
-          <button type="button" class="btn btn-outline-dark" id="btnDel">삭제</button>
-        </div>
-
+          <button type="button" sec:authorize="hasAnyRole('ADMIN','COMPANY')" class="btn btn-outline-dark" id="btnDel">삭제</button>
         <!-- 하단 링크 -->
-
       </section>
     </div>
   </div>

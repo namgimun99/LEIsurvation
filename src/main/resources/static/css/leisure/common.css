@@ -36,17 +36,8 @@
 #image{
     width : 315px;
     height : 320px;
-    border-width: 5px;
-    border-color: blue;
-    border-style: solid;
 }
 /* write css */
-#tlist{
-    border-width: 5px;
-    border-color: blue;
-    border-style: solid;
-
-}
 
 tr, td {
     border-bottom: 1px solid #444444;
@@ -59,7 +50,7 @@ table{
 }
 
 #td1{
-    width: 300px;
+    width: 250px;
 }
 #td2{
     width: 200px;
@@ -68,17 +59,8 @@ table{
     width: 200px;
 }
 #td4{
-    width: 100px;
+    width: 150px;
 }
-
-
-tbody tr:nth-child(2n) {
-    background-color: #bbdefb;
-  }
-
-tbody tr:nth-child(2n+1) {
-    background-color: #e3f2fd;
-  }
 
 #lbody{
     margin : 100px 0px 0px 200px;
@@ -87,9 +69,6 @@ tbody tr:nth-child(2n+1) {
 #weather{
     width: 500px;
     height: 110px;
-    border-width: 5px;
-    border-color: blue;
-    border-style: solid;
     right:0%;
     position: fixed;
     
@@ -110,21 +89,15 @@ tbody tr:nth-child(2n+1) {
     font-size: 40px;
 }
 #detail{
-    margin:0px 0px 0px 280px;
-    width : 800px;
-    height : 400px;
-    border-width: 5px;
-    border-color: blue;
-    border-style: solid;
+    margin:150px 0px 0px 480px;
+    width : 350px;
+    height : 350px;
 
 }
 
 #dimage{
     width : 350px;
     height : 395px;
-    border-width: 5px;
-    border-color: blue;
-    border-style: solid;
     float: left; width: 40%;
 }
 
@@ -148,8 +121,5 @@ tbody tr:nth-child(2n+1) {
 #image{
     width : 315px;
     height : 320px;
-    border-width: 5px;
-    border-color: blue;
-    border-style: solid;
 }
 /* detail css */

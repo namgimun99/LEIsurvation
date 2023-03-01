@@ -24,11 +24,7 @@
   <body>
   <th:block th:insert="~{common/header::header}"></th:block>
   <div class="container mt-3">
-    <h2 id = dh2>[[${dto.name}]]</h2>
     <div id = detail>
-      <div id = dimage>
-
-      </div>
       <section>
         <form name="frmDelete" th:action="@{/company/delete}" method="post">
           <input type="hidden" name="id" th:value="${dto.id}">
