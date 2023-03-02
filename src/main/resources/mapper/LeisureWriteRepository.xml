@@ -20,8 +20,7 @@
         name,
         price,
         content,
-        address,
-        avgstar
+        address
         FROM
         leisure
     </sql>
@@ -54,7 +53,6 @@
 
         <result column="s_company_id" property="company_id"/>
         <result column="s_id" property="id"/>
-        <result column="s_avgstar" property="avgstar"/>
         <collection property="review" resultMap="mapCompany"/>
 
     </resultMap>
@@ -81,8 +79,7 @@
         s.address "s_address",
         s.name "s_name",
         s.company_id "s_company_id",
-        s.id "s_id",
-        s.avgstar "s_avgstar"
+        s.id "s_id"
         FROM
         review d, leisure s
         WHERE

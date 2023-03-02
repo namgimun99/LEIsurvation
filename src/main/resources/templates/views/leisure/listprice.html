@@ -21,7 +21,7 @@
 <div id = lstar>
     <div class="row">
         <div class="col-12">
-            <a class="btn btn-outline-dark" th:href="@{/leisure/liststar}">별점 순으로 정렬</a>
+            <a class="btn btn-outline-dark" th:href="@{/leisure/liststar}">최신순으로 정렬</a>
         </div>
     </div>
 </div>
@@ -30,7 +30,7 @@
 </div>
 
 <div id = lbody>
-    <h2>레저 목록</h2>
+    <h2>레저 목록(가격순)</h2>
     <!-- 목록 -->
     <table class="border border-4" th:each="dto : ${listprice}">
 

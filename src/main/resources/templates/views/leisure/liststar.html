@@ -21,7 +21,7 @@
 <div id = lstar>
     <div class="row">
         <div class="col-12">
-            <a class="btn btn-outline-dark" th:href="@{/leisure/listprice}">별점 순으로 정렬</a>
+            <a class="btn btn-outline-dark" th:href="@{/leisure/listprice}">가격순으로 정렬</a>
         </div>
     </div>
 </div>
@@ -30,14 +30,14 @@
 </div>
 
 <div id = lbody>
-    <h2>레저 목록</h2>
+    <h2>레저 목록(최신순)</h2>
     <!-- 목록 -->
     <table class="border border-4" th:each="dto : ${liststar}">
 
         <tbody id = tlist>
 
         <tr>
-            <td id = td1><img th:src="@{'upload/leisure/'}"></td>
+            <td id = td1><img th:src="@{'/upload/leisure/' + ${dto.imageName}}"></td>
             <td id = td2>[[${dto.name}]]</td>
             <td id = td3>\[[${dto.price}]]</td>
             <td id = td4><a class="btn btn-outline-dark" th:href="@{/leisure/detail(id=${dto.id})}">상세 정보</a></td>

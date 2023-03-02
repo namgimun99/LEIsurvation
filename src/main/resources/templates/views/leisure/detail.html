@@ -25,8 +25,8 @@
   <th:block th:insert="~{common/header::header}"></th:block>
   <div class="container mt-3">
     <h2 id = dh2>[[${dto.name}]]</h2>
-    <div id = detail class ="border border-4">
-      <div id = dimage class ="border border-4">
+    <div id = detail>
+      <div id = dimage>
         <div>
           <!--          <label>첨부파일:</label>-->
           <!-- 첨부파일 이름, 다운로드 링크 -->
@@ -49,10 +49,6 @@
         <div class=detail>
           <label>제목:</label>
           <div class="border bg-light rounded p-2" >[[${dto.name}]]</div>
-        </div>
-        <div class=detail>
-          <label>평점:</label>
-          <div class="border bg-light rounded p-2" >[[${dto.avgstar}]]</div>
         </div>
         <div class=detail>
           <label>가격:</label>

@@ -16,7 +16,6 @@ public class  LeisureWrite {
     private Long price;
     private String content;
     private String address;
-    private double avgstar;
 
     private User user_id;
 

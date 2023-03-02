@@ -79,7 +79,24 @@ public class LeisureController {
 
     @GetMapping("/liststar")
     public void liststar(Model model){
-        model.addAttribute("liststar", leisureService.liststar());
+
+        List<LeisureWrite> leisureWriteList = leisureService.liststar();
+
+        List<LeisureWrite> leisureWriteList1 = new ArrayList<>();
+        System.out.println("---------------------------------------");
+        for(LeisureWrite leisureWrite: leisureWriteList ) {
+            Long leisure_id = leisureWrite.getId();
+            LeisureWrite leisureWrite1 = leisureService.selectById2(leisure_id);
+            if( leisureWrite1.getFiles().size() > 0) {
+                System.out.println(leisureWrite1.getFiles().get(0).getFile());
+                leisureWrite1.setImageName( leisureWrite1.getFiles().get(0).getFile() );
+            }
+            leisureWriteList1.add(leisureWrite1);
+
+        }
+
+//        model.addAttribute("listprice", leisureWriteList);
+        model.addAttribute("liststar", leisureWriteList1);
     }
 
     @GetMapping("/listprice")

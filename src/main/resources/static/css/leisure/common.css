@@ -63,7 +63,7 @@ table{
 }
 
 #lbody{
-    margin : 100px 0px 0px 200px;
+    margin : 15px 0px 0px 200px;
 }
 
 #weather{
@@ -85,7 +85,7 @@ table{
 }   
 /* list css */
 #dh2{
-    margin:150px 0px 0px 400px;
+    margin:15px 0px 0px 400px;
     font-size: 40px;
 }
 #detail{
