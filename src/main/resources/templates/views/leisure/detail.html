@@ -25,11 +25,23 @@
   <th:block th:insert="~{common/header::header}"></th:block>
   <div class="container mt-3">
     <h2 id = dh2>[[${dto.name}]]</h2>
-    <div id = detail>
-      <div id = dimage>
+    <div id = detail class ="border border-4">
+      <div id = dimage class ="border border-4">
+        <div>
+          <!--          <label>첨부파일:</label>-->
+          <!-- 첨부파일 이름, 다운로드 링크 -->
+          <ul class="list-group mb-1" th:each="fileDto : ${dto.files[0]}">
+            <!--            <li class="list-group-item" th:each="fileDto : ${dto.files}">-->
+            <!--              <a th:href="@{download(id=${fileDto.id})}">[[${fileDto.source}]]</a>-->
+            <!--            </li>-->
+          </ul>
+          <!--/* 이미지인 경우 보여주기 */-->
+          <div th:each="fileDto : ${dto.files}" th:if="${fileDto.image}">
+            <img th:src="@{'/upload/leisure/' + ${fileDto.file}}" class="img-thumbnail">
+          </div>
 
-      </div>
-      <section class="border border-4">
+        </div>
+      <section>
         <form name="frmDelete" th:action="@{/leisure/delete}" method="post">
           <input type="hidden" name="id" th:value="${dto.id}">
         </form>
@@ -56,14 +68,20 @@
         </div>
         <div id = dbutton>
           <!-- 하단 링크 -->
-          <a class="btn btn-outline-dark" sec:authorize="hasAnyRole('ADMIN','COMPANY)" th:href="@{/leisure/update(id=${dto.id})}">수정</a>
-          <a class="btn btn-outline-dark" th:href="@{/leisure/listprice}">목록</a>
-          <a class="btn btn-outline-dark" th:href="@{/reserve/write(id=${dto.id})}">예약</a>
+          <a class="btn btn-outline-dark" sec:authorize="hasAnyRole('ADMIN','COMPANY')" th:href="@{/leisure/update(id=${dto.id})}">수정</a>
           <button type="button" sec:authorize="hasAnyRole('ADMIN','COMPANY')" class="btn btn-outline-dark" id="btnDel">삭제</button>
+          <a class="btn btn-outline-dark" th:href="@{/reserve/write(id=${dto.id})}">예약</a>
+          <a class="btn btn-outline-dark" th:href="@{/leisure/listprice}">목록</a>
         <!-- 하단 링크 -->
+        </div>
       </section>
-    </div>
+
+
+      </div>
   </div>
+
+  </div>
+
   </body>
 </th:block>
 </html>

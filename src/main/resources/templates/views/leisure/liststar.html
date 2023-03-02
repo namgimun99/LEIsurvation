@@ -15,11 +15,13 @@
     <title>레저 리스트</title>
 </head>
 <body>
+
 <th:block th:insert="~{common/header::header}"></th:block>
+
 <div id = lstar>
     <div class="row">
         <div class="col-12">
-            <a class="btn btn-outline-dark" th:href="@{/leisure/listprice}">가격순으로 정렬</a>
+            <a class="btn btn-outline-dark" th:href="@{/leisure/listprice}">별점 순으로 정렬</a>
         </div>
     </div>
 </div>
@@ -30,16 +32,15 @@
 <div id = lbody>
     <h2>레저 목록</h2>
     <!-- 목록 -->
-
-    <table th:each="dto : ${liststar}">
+    <table class="border border-4" th:each="dto : ${liststar}">
 
         <tbody id = tlist>
 
         <tr>
-            <td id = td1> 이미지</td>
-            <td id = td2><a th:href="@{/leisure/detail(id=${dto.id})}">[[${dto.name}]]</a></td>
+            <td id = td1><img th:src="@{'upload/leisure/'}"></td>
+            <td id = td2>[[${dto.name}]]</td>
             <td id = td3>\[[${dto.price}]]</td>
-            <td id = td4>[[${dto.avgstar}]]</td>
+            <td id = td4><a class="btn btn-outline-dark" th:href="@{/leisure/detail(id=${dto.id})}">상세 정보</a></td>
         </tr>
 
         </tbody>

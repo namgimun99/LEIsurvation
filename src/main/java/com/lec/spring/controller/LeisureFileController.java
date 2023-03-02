@@ -21,7 +21,7 @@ import java.nio.file.Paths;
 @RestController
 public class LeisureFileController {
 
-    @Value("${app.leisure.upload.path}")  // org.springframework.beans.factory.annotation.Value
+    @Value("app.leisure.uload.path             ")  // org.springframework.beans.factory.annotation.Value
     private String uploadDir;
 
     private LeisrefileService LfileService;

@@ -8,7 +8,7 @@
         INSERT INTO leisure_file(SOURCE, file, leisure_id)
         VALUES
             <foreach collection="param1" item="e" separator=",">
-                (#{e.source},#{e.file},#{param2})
+                (#{e.SOURCE},#{e.file},#{param2})
             </foreach>
     </insert>
 
@@ -16,12 +16,12 @@
             parameterType="com.lec.spring.domain.LeisureFileDTO">
         INSERT INTO leisure_file(SOURCE, file, leisure_id)
         VALUES
-            (#{e.source},#{e.file},#{param2})
+            (#{source},#{file},#{leisure_id})
     </insert>
 
     <sql id = "selectfile">
         SELECT id, source, file, leisure_id
-        FROM leisre_file
+        FROM leisure_file
     </sql>
 
     <select id="findByLeisure" resultType="com.lec.spring.domain.LeisureFileDTO">

@@ -18,12 +18,12 @@
 <body>
 <th:block th:insert="~{common/header::header}"></th:block>
 <h2 id = wh2>레져 등록</h2>
+<form th:action="@{/leisure/write}" method="post" enctype="Multipart/form-data">
 <div id = write>
     <div id = wimage>
-        <div id = files>
 
+        <div id = files></div>
 
-        </div>
         <div id = wimgbtn>
             <button type = button id = btnAdd class="btn btn-outline-dark">이미지 등록</button>
         </div>
@@ -34,7 +34,10 @@
             </div>
         </div>
     </div>
-    <form th:action="@{/leisure/write}" method="post" enctype="Multipart/form-data">
+
+
+<!--        <div id = files></div>-->
+
         <div class = write>
             <input type="hidden" class="form-control" id="company_id" placeholder="company_id" name="company_id" th:value="${company_id}">
         </div>

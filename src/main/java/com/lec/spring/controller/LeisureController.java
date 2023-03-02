@@ -2,10 +2,9 @@
 package com.lec.spring.controller;
 
 
-import com.lec.spring.domain.LeisureWrite;
-import com.lec.spring.domain.LeisureWriteValidator;
-import com.lec.spring.domain.Review;
+import com.lec.spring.domain.*;
 import com.lec.spring.service.LeisureService;
+import com.lec.spring.util.U;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +31,7 @@ public class LeisureController {
 
     @GetMapping("/write")
     public void write(Long company_id, Model model){
+        User user = U.getLoggedUser();
         model.addAttribute("company_id", company_id);
     }
 
@@ -38,7 +41,8 @@ public class LeisureController {
             @Valid LeisureWrite leisureWrite,
             BindingResult result,
             Model model,
-            RedirectAttributes redirectAttributes){
+            RedirectAttributes redirectAttributes) throws IOException {
+
 
         int num1 = leisureWrite.getCompany_id();
         if(result.hasErrors()){
@@ -80,7 +84,25 @@ public class LeisureController {
 
     @GetMapping("/listprice")
     public void listprice(Model model){
-        model.addAttribute("listprice", leisureService.listprice());
+
+//        model.addAttribute("leisure_file", "logo.jpeg");
+        List<LeisureWrite> leisureWriteList = leisureService.listprice();
+
+        List<LeisureWrite> leisureWriteList1 = new ArrayList<>();
+        System.out.println("---------------------------------------");
+        for(LeisureWrite leisureWrite: leisureWriteList ) {
+            Long leisure_id = leisureWrite.getId();
+            LeisureWrite leisureWrite1 = leisureService.selectById2(leisure_id);
+            if( leisureWrite1.getFiles().size() > 0) {
+                System.out.println(leisureWrite1.getFiles().get(0).getFile());
+                leisureWrite1.setImageName( leisureWrite1.getFiles().get(0).getFile() );
+            }
+            leisureWriteList1.add(leisureWrite1);
+
+        }
+
+//        model.addAttribute("listprice", leisureWriteList);
+        model.addAttribute("listprice", leisureWriteList1);
     }
 
 
@@ -90,7 +112,9 @@ public class LeisureController {
     }
 
     @PostMapping("/update")
-    public String updateOk(@Valid LeisureWrite leisurewrite,
+    public String updateOk(@RequestParam Map<String, MultipartFile> files,
+                           Long[] delfile,
+                           @Valid LeisureWrite leisurewrite,
                            BindingResult result,
                            Model model,
                            RedirectAttributes redirectAttrs) {
@@ -109,7 +133,7 @@ public class LeisureController {
             return "redirect:/leisure/update?id=" + leisurewrite.getId();
         }
 
-        model.addAttribute("result", leisureService.update(leisurewrite));
+        model.addAttribute("result", leisureService.update(leisurewrite,files, delfile));
         model.addAttribute("dto", leisurewrite);
 
         return "leisure/updateOk";
@@ -119,5 +143,6 @@ public class LeisureController {
         model.addAttribute("result", leisureService.deleteById(id));
         return "leisure/deleteOk";
     }
+
 }
 

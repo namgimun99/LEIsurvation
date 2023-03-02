@@ -9,7 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class LeisureWrite {
+public class  LeisureWrite {
     private Long id;
     private int company_id;
     private String name;
@@ -26,5 +26,7 @@ public class LeisureWrite {
 
     private CompanyWrite companyWrite;
     private Review review;
+
+    private String imageName;
 
 }
