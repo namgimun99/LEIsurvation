@@ -4,19 +4,36 @@
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home/home.css}">
     <title>Home</title>
 </head>
-<body>
+<body onload="showImage()">
 <!--/* 인증 헤더 */-->
 <th:block th:insert="~{common/header::header}"></th:block>
 
-<div class="container mt-3">
-    <h1>Home</h1>
-<a class="w-50 btn btn-lg btn-primary my-1" th:href="@{/company/write}">파트너쉽 등록</a>
-<a class="w-50 btn btn-lg btn-primary my-1" th:href="@{/leisure/listprice}">레져 목록</a>
-</div>
+<script src="js/home_image.js"></script>
+<section class="conA">
+    <div class="conA-img">
+        <p>
+            <button onclick="changePic(0);" id="btnB"><img src="img/back.png" id="back"></button>
+            <img src="img/leisure1.jpg" id="photo">
+            <button onclick="changePic(1);" id="btnF"><img src="img/forward.png" id="forward"></button>
+        </p>
 
+        <div class="blank"></div>
+        <h3 class="introTxt">Welcome to our LEIsurvation!!</h3>
+        <hr class="intro1">
+
+        <div class="buttonA">
+                <a th:href="@{/company/write}" id="under"><div class="register" id="regC">파트너쉽 등록</div></a>
+        </div>
+        <div class="blank2"></div>
+        <div class="buttonA">
+                <a th:href="@{/leisure/listprice}"><div class="register" id="regL">레져 목록</div></a>
+        </div>
+    </div>
+</section>
 </body>
 </html>
 
