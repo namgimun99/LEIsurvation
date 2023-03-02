@@ -57,23 +57,23 @@ public class LeisureService {
 
         return cnt;
     }
-
-    public List<LeisureWrite> selectById(long id) {
-        List<LeisureWrite> list = new ArrayList<>();
-
-        LeisureWrite leisureWrite = leisureWriteRepository.findById(id);
-
-        if (leisureWrite != null) {
-            // 첨부파일 정보 가져오기
-            List<LeisureFileDTO> fileList = leisureFileRepository.findByLeisure(leisureWrite.getId());
-            setImage(fileList);   // 이미지 파일 여부 세팅
-            leisureWrite.setFiles(fileList);
-
-            list.add(leisureWrite);
-        }
-
-        return list;
-    }
+//
+//    public List<LeisureWrite> selectById(long id) {
+//        List<LeisureWrite> list = new ArrayList<>();
+//
+//        LeisureWrite leisureWrite = leisureWriteRepository.findById(id);
+//
+//        if (leisureWrite != null) {
+//            // 첨부파일 정보 가져오기
+//            List<LeisureFileDTO> fileList = leisureFileRepository.findByLeisure(leisureWrite.getId());
+//            setImage(fileList);   // 이미지 파일 여부 세팅
+//            leisureWrite.setFiles(fileList);
+//
+//            list.add(leisureWrite);
+//        }
+//
+//        return list;
+//    }
 
     public LeisureWrite selectById2(long id) {
         LeisureWrite leisureWrite = leisureWriteRepository.findById(id);
@@ -180,11 +180,19 @@ public class LeisureService {
         return attachment;
     } // end upload
 
+    //별점
+    public Double getAvgstar(Long id){
+
+        return leisureWriteRepository.selectAvgStar(id);
+    }
+
     @Transactional
     public List<LeisureWrite> leisureDetail(long id) {
         List<LeisureWrite> list = new ArrayList<>();
 
         LeisureWrite leisureWrite = leisureWriteRepository.findById(id);
+
+
 
         if (leisureWrite != null) {
             List<LeisureFileDTO> files = leisureFileRepository.findByLeisure(leisureWrite.getId());
@@ -192,8 +200,10 @@ public class LeisureService {
             leisureWrite.setFiles(files);
             list.add(leisureWrite);
         }
+
         return list;
     }
+
 
     private void setImage(List<LeisureFileDTO> fileList) {
         // upload 실제 물리적인 경로

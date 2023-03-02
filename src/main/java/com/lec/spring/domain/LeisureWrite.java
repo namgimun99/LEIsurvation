@@ -28,4 +28,7 @@ public class  LeisureWrite {
 
     private String imageName;
 
+    //별점
+    private Double avg_star;
+
 }

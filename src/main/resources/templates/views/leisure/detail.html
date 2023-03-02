@@ -9,6 +9,7 @@
 
 
 <th:block th:if="${list} and ${#lists.size(list) > 0}" th:with="dto=${list[0]}">
+<!--<th:block th:if="${list2} and ${#lists.size(list2) > 0}" th:with="dto2=${list2[0]}">-->
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -51,6 +52,10 @@
           <div class="border bg-light rounded p-2" >[[${dto.name}]]</div>
         </div>
         <div class=detail>
+          <label>평점:</label>
+          <div class="border bg-light rounded p-2 text-warning" >★[[${avg_star}]]</div>
+        </div>
+        <div class=detail>
           <label>가격:</label>
           <div class="border bg-light rounded p-2" >[[${dto.price}]]</div>
         </div>
@@ -79,5 +84,6 @@
   </div>
 
   </body>
+</th:block>
 </th:block>
 </html>

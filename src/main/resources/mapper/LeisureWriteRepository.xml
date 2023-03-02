@@ -93,4 +93,12 @@
         <include refid="Base"/>
         ORDER BY price ASC
     </select>
+
+    <select id="selectAvgStar" resultType="java.lang.Double">
+            SELECT IFNULL(AVG(review.star),0) AS avg_star
+            FROM leisure 	LEFT JOIN reservation ON reservation.leisure_id = leisure.id
+                            LEFT JOIN review ON review.reservation_id = reservation.id
+            WHERE leisure.id = #{id}
+            GROUP BY leisure.id;
+    </select>
 </mapper>

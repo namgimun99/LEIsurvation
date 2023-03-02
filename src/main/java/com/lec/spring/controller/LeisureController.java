@@ -44,7 +44,7 @@ public class LeisureController {
             RedirectAttributes redirectAttributes) throws IOException {
 
 
-        int num1 = leisureWrite.getCompany_id();
+        int companyid = leisureWrite.getCompany_id();
         if(result.hasErrors()){
 
             redirectAttributes.addFlashAttribute("name", leisureWrite.getName());
@@ -59,7 +59,7 @@ public class LeisureController {
                 redirectAttributes.addFlashAttribute("error", err.getCode());
                 break;
             }
-            return "redirect:/leisure/write?company_id="+num1;
+            return "redirect:/leisure/write?company_id="+companyid;
         }
         model.addAttribute("result", leisureService.leisureWrite(leisureWrite,files));
         model.addAttribute("dto", leisureWrite);
@@ -74,7 +74,10 @@ public class LeisureController {
 
     @GetMapping("/detail")
     public void detail(long id, Model model){
+
         model.addAttribute("list", leisureService.leisureDetail(id));
+        model.addAttribute("avg_star", leisureService.getAvgstar(id));
+
     }
 
     @GetMapping("/liststar")
@@ -95,14 +98,12 @@ public class LeisureController {
 
         }
 
-//        model.addAttribute("listprice", leisureWriteList);
         model.addAttribute("liststar", leisureWriteList1);
     }
 
     @GetMapping("/listprice")
     public void listprice(Model model){
 
-//        model.addAttribute("leisure_file", "logo.jpeg");
         List<LeisureWrite> leisureWriteList = leisureService.listprice();
 
         List<LeisureWrite> leisureWriteList1 = new ArrayList<>();
@@ -118,7 +119,6 @@ public class LeisureController {
 
         }
 
-//        model.addAttribute("listprice", leisureWriteList);
         model.addAttribute("listprice", leisureWriteList1);
     }
 

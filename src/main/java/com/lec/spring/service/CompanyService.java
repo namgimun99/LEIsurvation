@@ -65,13 +65,13 @@ public class CompanyService {
 
         return result;
     }
-    private CompanyWrite findByUsername(String companyname) {
+    private CompanyWrite findByCompanyname(String companyname) {
         return companyWriteRepository.findBycompanyname(companyname);
     }
 
 
     public boolean isExist(String companyname){
-        CompanyWrite companyWrite = findByUsername(companyname);
+        CompanyWrite companyWrite = findByCompanyname(companyname);
         return (companyWrite != null) ? true : false;
     }
 }
