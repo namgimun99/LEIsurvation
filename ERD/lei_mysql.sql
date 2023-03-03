@@ -49,7 +49,6 @@ CREATE TABLE leisure
 	price int NOT NULL,
 	content text NOT NULL,
 	address varchar(200) NOT NULL,
-	avgstar float DEFAULT 0,
 	PRIMARY KEY (id)
 );
 
@@ -93,8 +92,8 @@ CREATE TABLE reservation
 	leisure_id int NOT NULL,
 	name varchar(80) NOT NULL,
 	regdate datetime DEFAULT now(),
-	phone int NOT NULL,
-	date int(8) NOT NULL,
+	phone varchar(13) NOT NULL,
+	date varchar(8) NOT NULL,
 	PRIMARY KEY (id)
 );
 
@@ -104,7 +103,6 @@ CREATE TABLE review
 	id int NOT NULL AUTO_INCREMENT,
 	reservation_id int NOT NULL,
 	user_id int NOT NULL,
-	leisure_id int NOT NULL,
 	subject varchar(200) NOT NULL,
 	content longtext NOT NULL,
 	regdate datetime DEFAULT now(),
@@ -184,14 +182,6 @@ ALTER TABLE reservation
 	REFERENCES leisure (id)
 	ON UPDATE RESTRICT
 	ON DELETE CASCADE
-;
-
-
-ALTER TABLE review
-	ADD FOREIGN KEY (leisure_id)
-	REFERENCES leisure (id)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
 ;
 
 
@@ -284,13 +274,3 @@ ALTER TABLE user_authorities
 
 
 
-SELECT
-        id,
-        user_id,
-        subject,
-        content,
-        regdate
-        FROM
-        qna
-        ORDER BY id DESC;
-        
