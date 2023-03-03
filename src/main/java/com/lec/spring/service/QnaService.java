@@ -32,21 +32,19 @@ public class QnaService {
     }
 
 
-//    페이징-------------------------------
+//    페이징-------------------------------------------
     public List<Qna> list(Integer page, Model model){
         //현재 페이지 parameter
         if(page==null) page=1;
         if(page < 1) page=1;
 
-        HttpSession session = U.getSession();  //git 으로 옮길 때는 주석 해제
-        Integer writePages=(Integer)session.getAttribute("writePages"); //git 으로 옮길 때는 주석 해제
-//        Integer writePages = null; //git 으로 옮길때는 삭제
+        HttpSession session = U.getSession();
+        Integer writePages=(Integer)session.getAttribute("writePages");
         if(writePages == null) writePages = C.WRITE_PAGES;
-//        Integer pageRows = null; //git 으로 옮길때는 삭제
-        Integer pageRows=(Integer)session.getAttribute("pageRows"); //git 으로 옮길 때는 주석 해제
+        Integer pageRows=(Integer)session.getAttribute("pageRows");
         if(pageRows == null) pageRows = C.PAGE_ROWS;
 
-        session.setAttribute("page", page);   //git 으로 옮길 때는 주석 해제
+        session.setAttribute("page", page);   //세션에 현재 페이지가 몇 페이지인지 저장한다.
 
         long cnt = qnaRepository.countAll();  // 글 목록 전체의 개수
         int totalPage = (int)Math.ceil(cnt/(double)pageRows); //총 몇 페이지 분량인가
