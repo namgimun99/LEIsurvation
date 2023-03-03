@@ -122,11 +122,9 @@ public class QnaController {
         U.getSession().setAttribute("pageRows", pageRows);
         return "redirect:/qna/list?page=" + page;
     }
-
     //페이징 사용
     @GetMapping("/list")
     public void list(Integer page,Model model){
         qnaService.list(page,model);
-
     }
 }

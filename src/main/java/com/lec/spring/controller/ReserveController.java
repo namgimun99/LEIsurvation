@@ -127,19 +127,10 @@ public class ReserveController {
 
     }
 
-
-
-
-
-
-
     @GetMapping("/company")
     public void company(Long company_id, Model model){
         model.addAttribute("list",reserveService.listCompany(company_id));
     }
-
-
-
 
 
     @InitBinder
