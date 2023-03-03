@@ -16,9 +16,9 @@ public interface LeisureFileRepository {
 
     LeisureFileDTO findById(Long id);
 
-    List<LeisureFileDTO> findByIds(Long [] ids);
-
-    int deleteByIds(Long [] ids);
+//    List<LeisureFileDTO> findByIds(Long [] ids);
+//
+//    int deleteByIds(Long [] ids);
 
     int delete(LeisureFileDTO file);
 }
