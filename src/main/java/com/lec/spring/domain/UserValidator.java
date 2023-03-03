@@ -21,7 +21,7 @@ public class UserValidator implements Validator {
 
         String username = user.getUsername();
         if(username == null || username.trim().isEmpty()) {
-            errors.rejectValue("username", "username 은 필수입니다");
+            errors.rejectValue("username", "※ username 은 필수입니다");
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "password 는 필수입니다");
@@ -29,7 +29,7 @@ public class UserValidator implements Validator {
         String password = user.getPassword();
         String p_regex = "^(?=.*[a-zA-z])(?=.*[0-9]).{8,}$";
         if(!Pattern.matches(p_regex, password)){
-            errors.rejectValue("password", "비밀번호를 최소 8자리 이상, 영문/숫자 조합으로 입력해주세요.");
+            errors.rejectValue("password", "※ 비밀번호를 최소 8자리 이상, 영문/숫자 조합으로 입력해주세요.");
         }
 
     }

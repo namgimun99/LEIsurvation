@@ -1,0 +1,32 @@
+body{
+    background: AliceBlue;
+}
+.conA{
+    padding-top: 10%;
+    padding-left: 30%;
+    padding-right: 30%;
+    align-items: center;
+}
+.conB{
+    padding-left: 5em;
+    padding-right: 5em;
+    padding-top: 5em;
+    padding-bottom: 5em;
+    background-color: LightSteelBlue;
+    border-radius : 10px;
+    width: 700px;
+}
+.label{
+    font-size: large;
+}
+.loginBtn{
+    float: right;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding:1em;
+    font-size: 15px;
+}
+.blank{
+    padding-top: 20px;
+    padding-bottom: 1em;
+}

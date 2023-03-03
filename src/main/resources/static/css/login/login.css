@@ -1,0 +1,37 @@
+body{
+    background: AliceBlue;
+}
+.conA{
+    padding-top: 10%;
+    padding-left: 30%;
+    padding-right: 30%;
+    align-items: center;
+    text-align: center;
+}
+.conB{
+    padding-left: 5em;
+    padding-right: 5em;
+    padding-top: 5em;
+    padding-bottom: 5em;
+    background-color: LightSteelBlue;
+    border-radius : 10px;
+    text-align: center;
+    width: 700px;
+}
+.loginBtn{
+    float: right;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding:1em;
+    font-size: 15px;
+}
+.blank{
+    padding-top: 60px;
+    padding-bottom: 1em;
+}
+a.join{
+  color: black;
+}
+#kakao-login-btn{
+    border:0;
+}

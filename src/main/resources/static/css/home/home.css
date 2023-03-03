@@ -1,0 +1,110 @@
+body{
+    background: AliceBlue;
+}
+.conA{
+    display: flex;
+    justify-content: center;
+    background-size: cover;
+    text-align: center;
+    background-position: center;
+}
+#introImg{
+    width: 1100px;
+    height: 700px;
+    display: block;
+}
+.conA-img{
+    text-align: center;
+}
+button{width: 100px; height: 30px;}
+#btnB{
+    border: 0;
+    border-radius: 7px;
+    padding-bottom: 3em;
+    background : none;
+}
+#btnF{
+    border: 0;
+    border-radius: 7px;
+    padding-bottom: 3em;
+    background : none;
+}
+#back{
+    width :5em;
+    height : 8em;
+}
+#forward{
+    width :5em;
+    height : 8em;
+}
+.blank{
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+#photo{
+    width: 900px;
+    height: 500px;
+    padding-left: 5em;
+    padding-right: 5em;
+}
+.conB{
+    display: inline-block;
+}
+.introTxt{
+    text-align: center;
+    font-size: 5em;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+hr.intro1{
+    border-top: 10px solid gold;
+    margin: auto;
+    margin-bottom: 30px;
+    width: 100%;
+}
+.buttonA{
+    border: 1px solid #666666;
+    padding: 25px 50px;
+    border-radius: 10px;
+    display: inline-block;
+}
+.blank2{
+    display: inline-block;
+    padding-top: 4em;
+    padding-left: 3em;
+    padding-right: 3em;
+}
+.register{
+    background-color: rgba(0, 41, 255, 0.1);
+    border: 0;
+    padding-top:1.5em;
+    padding-bottom: 1.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    justify-content: center;
+    text-align: center;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 27px;
+}
+div#regC{
+    width: 250px;
+    height: 120px;
+    transition : width 1s, height 2s;
+}
+div#regL{
+    width: 250px;
+    height: 120px;
+    transition : width 1s, height 2s;
+}
+div#regC:hover{
+    width : 300px;
+}
+div#regL:hover{
+    width : 300px;
+}
+.buttonA a{
+    text-decoration:none;
+    color: black;
+}

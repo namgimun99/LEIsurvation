@@ -24,16 +24,16 @@ public class CustomLoginFailureHandler implements AuthenticationFailureHandler {
         String errorMessage = null;
 
         if(exception instanceof BadCredentialsException || exception instanceof InternalAuthenticationServiceException) {
-            errorMessage = "아이디나 비밀번호가 맞지 않습니다. 다시 확인해 주세요.";
+            errorMessage = "※ 아이디나 비밀번호가 맞지 않습니다. 다시 확인해 주세요.";
         }
         else if(exception instanceof DisabledException) {
-            errorMessage = "계정이 비활성화 되었습니다. 관리자에게 문의하세요.";
+            errorMessage = "※ 계정이 비활성화 되었습니다. 관리자에게 문의하세요.";
         }
         else if(exception instanceof CredentialsExpiredException) {
-            errorMessage = "비밀번호 유효기간이 만료 되었습니다. 관리자에게 문의하세요.";
+            errorMessage = "※ 비밀번호 유효기간이 만료 되었습니다. 관리자에게 문의하세요.";
         }
         else {
-            errorMessage = "로그인에 실패하였습니다. 관리자에게 문의하세요.";
+            errorMessage = "※ 로그인에 실패하였습니다. 관리자에게 문의하세요.";
         }
 
         request.setAttribute("errorMessage", errorMessage);
