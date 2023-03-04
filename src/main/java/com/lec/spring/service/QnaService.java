@@ -27,9 +27,7 @@ public class QnaService {
         System.out.println("QnaService() 생성");
     }
 
-    public List<Qna> list() {
-        return qnaRepository.findAll();
-    }
+
 
 
 //    페이징-------------------------------------------

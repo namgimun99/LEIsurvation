@@ -106,12 +106,9 @@ function buildComment(result){
                                     data-cmtdel-id="${id}" title="삭제"></i>
                             `;
 
-
-
-
         const row = `
             <tr>
-            <td><span><strong>${username}</strong><br><small class="text-secondary">(${username})</small></span></td>
+            <td><span><strong>${username}</strong><br><br></span></td>
             <td>
                 <span>${content}</span>${delBtn}
             </td>

@@ -19,7 +19,6 @@ import java.time.LocalDateTime;
 @Builder
 public class Qna_comment {
     private Long id;
-    private Long user_id;
     private String content;
 
     //java.time.* 객체 변환을 위한 annotation
@@ -31,6 +30,7 @@ public class Qna_comment {
 
     @ToString.Exclude
     private User user;
+
 
     @JsonIgnore
     private Long qna_id;
