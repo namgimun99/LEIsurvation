@@ -74,7 +74,7 @@
         <div id = dbutton>
           <!-- 하단 링크 -->
           <a class="btn btn-outline-dark" sec:authorize="hasAnyRole('ADMIN','COMPANY')" th:href="@{/leisure/update(id=${dto.id})}">수정</a>
-          <button type="button" sec:authorize="hasAnyRole('ADMIN','COMPANY')" class="btn btn-outline-dark" id="btnDel">삭제</button>
+          <button type="button" sec:authorize="hasAnyRole('COMPANY')" class="btn btn-outline-dark" id="btnDel">삭제</button>
           <a class="btn btn-outline-dark" th:href="@{/reserve/write(id=${dto.id})}">예약</a>
           <a class="btn btn-outline-dark" th:href="@{/leisure/listprice}">목록</a>
         <!-- 하단 링크 -->

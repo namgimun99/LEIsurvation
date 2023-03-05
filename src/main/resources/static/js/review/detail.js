@@ -90,7 +90,7 @@ function buildComment(result){
 
         const row = `
             <tr>
-            <td><span><strong>${username}</strong><br><small class="text-secondary">(${name})</small></span></td>
+            <td><span><strong>${username}</strong><br><br></span></td>
             <td>
                 <span>${content}</span>${delBtn}
             </td>
