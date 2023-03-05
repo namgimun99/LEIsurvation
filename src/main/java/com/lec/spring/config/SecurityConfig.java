@@ -34,11 +34,11 @@ public class SecurityConfig {
                 // url 접근권한 세팅
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/review/detail/**", "/qna/detail/**").authenticated()
-                        .requestMatchers("/leisure/write/**","/mypage/company/**","/leisure/delete/**").hasAnyRole("COMPANY", "ADMIN")
-                        .requestMatchers("/company/write/**", "/mypage/member").hasAnyRole("USER", "COMPANY", "ADMIN")
-                        .requestMatchers("/reserve/write/**", "/reserve/update/**", "/reserve/detail/**", "/reserve/delete/**").hasAnyRole("USER", "COMPANY", "ADMIN")
-                        .requestMatchers("/review/write/**", "/review/update/**", "/review/delete/**").hasAnyRole("USER","COMPANY","ADMIN")
-                        .requestMatchers("/qna/write/**", "/qna/update/**", "/qna/delete/**").hasAnyRole("USER", "COMPANY", "ADMIN")
+                        .requestMatchers("/leisure/write/**","/mypage/company/**","/leisure/delete/**").hasAnyRole("COMPANY")
+                        .requestMatchers("/company/write/**", "/mypage/member").hasAnyRole("USER", "COMPANY")
+                        .requestMatchers("/reserve/write/**", "/reserve/update/**", "/reserve/detail/**", "/reserve/delete/**").hasAnyRole("USER", "COMPANY")
+                        .requestMatchers("/review/write/**", "/review/update/**", "/review/delete/**").hasAnyRole("USER","COMPANY")
+                        .requestMatchers("/qna/write/**", "/qna/update/**", "/qna/delete/**").hasAnyRole("USER", "COMPANY")
                         .anyRequest().permitAll()   //나머지 url은 모두 허용
                 )
 

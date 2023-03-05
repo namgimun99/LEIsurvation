@@ -21,10 +21,10 @@ public class UserValidator implements Validator {
 
         String username = user.getUsername();
         if(username == null || username.trim().isEmpty()) {
-            errors.rejectValue("username", "※ username 은 필수입니다");
+            errors.rejectValue("username", "※ 아이디는 필수입니다");
         }
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "password 는 필수입니다");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "※ 비밀번호는 필수입니다");
 
         String password = user.getPassword();
         String p_regex = "^(?=.*[a-zA-z])(?=.*[0-9]).{8,}$";

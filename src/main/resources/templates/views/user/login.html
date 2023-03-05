@@ -20,18 +20,13 @@
 
 <div class="conA">
         <div class="conB">
-        <form th:action="@{/user/login}" method="POST">
-<!--            <div class="alert alert-danger d-none" id="alert-kakao-login">오류 메세지</div>-->
-<!--            <a id="btn-kakao-login" href="javascript:loginWithKakao()">-->
-<!--                <img src="/img/kakaoLogin.png">-->
-<!--            </a>-->
-<!--            <a id="kakao-login-btn" href="javascript:loginWithKakao()">-->
-<!--                <img src="/img/kakaoLogin.png">-->
-<!--            </a>-->
-<!--            <form id="form-kakao-login" method="post" action="kakao-login">-->
-<!--                <input type="hidden" name="email"/>-->
-<!--                <input type="hidden" name="name"/>-->
-<!--            </form>-->
+            <form id="kakaoform" th:action="@{/user/apiLogin}" method="POST"></form>
+            <div onclick="loginWithKakao();">
+                <a href="javascript:void(0)">
+                    <img src="/img/kakaoLogin.png">
+                </a>
+            </div>
+            <form th:action="@{/user/login}" method="POST">
             <hr>
             <div class="row mt-5">
                 <div class="col-12 text-danger" th:text="${errorMessage}">

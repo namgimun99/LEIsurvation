@@ -72,14 +72,35 @@ public class UserController {
             return "redirect:/user/join";
         }
         // valid 통과되면 수행
-        String page = "/user/joinOk";
         int cnt = userService.join(user);
+
+        // api로그인이라면 바로 로그인까지 실행
+        if (user.getProvider().equals("api")) {
+            model.addAttribute("username", user.getUsername());
+            System.out.println("----------------------------");
+            System.out.println(user.getUsername());
+            System.out.println("----------------------------");
+            return "/user/apiLogin";
+        }
+
         model.addAttribute("result", cnt);
-        return page;
+        return "/user/joinOk";
     }
 
-    @GetMapping("/practice")
-    public void test(){}
+    @PostMapping("/apiLogin")
+    public String apiLogin(String id, Model model){
+        model.addAttribute("username", id);
+
+        if(userService.isExist(id)){
+            return "/user/apiLogin";
+        }else{
+            return "/user/apiJoin";
+        }
+    }
+
+//    @GetMapping("/practice")
+//    public void test(){}
+
 
     @InitBinder
     public void initBinder(WebDataBinder binder){
