@@ -9,7 +9,6 @@ import java.util.List;
 @Repository
 public interface QnaRepository {
 
-    List<Qna> findAll();
 
     int save(Qna qna);
 

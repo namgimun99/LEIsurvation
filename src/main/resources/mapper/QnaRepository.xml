@@ -5,19 +5,6 @@
 
 
 <mapper namespace="com.lec.spring.repository.QnaRepository">
-    <select id="findAll"  resultType="com.lec.spring.domain.Qna">
-        SELECT
-        id,
-        user_id,
-        subject,
-        content,
-        regdate
-        from
-        qna
-        ORDER BY id DESC;
-    </select>
-
-
 
 
     <insert id="save" flushCache="true" parameterType="com.lec.spring.domain.Qna"
@@ -65,31 +52,41 @@
 
 <!--페이징-->
 
+    <resultMap id="findName" type="com.lec.spring.domain.Qna">
+        <result column="d_id" property="id"/>
+        <result column="d_user_id" property="user_id"/>
+        <result column="d_subject" property="subject"/>
+        <result column="d_regdate" property="regdate"/>
+        <collection property="user" resultMap="findName1"/>
 
+    </resultMap>
 
+    <resultMap id="findName1" type="com.lec.spring.domain.User">
+        <result column="s_id" property="id"/>
+        <result column="s_username" property="username"/>
 
+    </resultMap>
 
-
-
-
-
-    <select id="selectFromRow" resultType="com.lec.spring.domain.Qna">
+    <select id="selectFromRow" resultMap="findName">
         SELECT
-        id,
-        user_id,
-        subject,
-        content,
-        regdate
-        from
-        qna
-        ORDER BY id DESC
+        d.id "d_id",
+        d.user_id "d_user_id",
+        d.subject "d_subject",
+        d.content "d_content",
+        d.regdate "d_regdate",
+        s.id "s_id",
+        s.username "s_username"
+        FROM
+        qna d, user s
+        WHERE
+        d.user_id =s.id
+        ORDER BY d.id DESC
         LIMIT #{param1},#{param2}
     </select>
 
     <select id="countAll" resultType="int">
     SELECT COUNT(*) FROM qna
     </select>
-
 
 
 </mapper>

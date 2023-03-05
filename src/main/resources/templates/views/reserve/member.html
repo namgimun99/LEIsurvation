@@ -25,20 +25,18 @@
 </hr>
 <table class="table table-hover">
   <thead class="table-success">
-  <th:block th:if="${list2} and ${#lists.size(list2) > 0}">
 
-  <div style="background-color:cornflowerblue" th:each="dto2:${list2[0]}" id="memhead">
+  <div style="background-color:cornflowerblue" id="memhead">
     <h3>프로필</h3>
-    <div class="mb-3" th:with="user=${#authentication.getPrincipal().getUser()}">유저 아이디: [[${dto2.user.username}]]</div>
+    <div class="mb-3" th:with="user=${#authentication.getPrincipal().getUser()}">유저 아이디: [[${user.username}]]</div>
   </div>
-  </th:block>
 
   <th:block th:if="${list2} and ${#lists.size(list2) > 0}">
 
   <div style="background-color:white" th:each="dto2:${list2}" class="memhead">
-    <span>컴퍼니 이름 : [[${dto2.companyname}]]</span>
-    <span sec:authorize="hasAnyRole('COMPANY')" style="padding: 0px 10px 0px 0px"><a class="btn btn-outline-dark" th:href="@{/leisure/write(company_id=${dto2.id})}"> 레저 등록</a></span>
-    <span sec:authorize="hasAnyRole('COMPANY')" style="padding: 0px 10px 0px 0px" ><a class="btn btn-outline-dark" th:href="@{/reserve/company(company_id=${dto2.id})}"> 등록한 레저 목록</a></span>
+    <span style="padding: 0px 30px 0px 0px">컴퍼니 이름 : [[${dto2.companyname}]]</span>
+    <span sec:authorize="hasAnyRole('COMPANY')" style="padding: 0px 30px 0px 0px"><a class="btn btn-outline-dark" th:href="@{/leisure/write(company_id=${dto2.id})}"> 레저 등록</a></span>
+    <span sec:authorize="hasAnyRole('COMPANY')" style="padding: 0px 30px 0px 0px" ><a class="btn btn-outline-dark" th:href="@{/reserve/company(company_id=${dto2.id})}"> 등록한 레저 목록</a></span>
     <span sec:authorize="hasAnyRole('COMPANY')"><a class="btn btn-outline-dark" th:href="@{/company/mypage(id=${dto2.id})}">회사 정보</a></span>
     <hr>
   </div>
@@ -81,5 +79,6 @@
 </table>
 
 </div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
 </html>
