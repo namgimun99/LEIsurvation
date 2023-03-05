@@ -84,7 +84,6 @@ public class ReserveController {
 
         }
 
-
         model.addAttribute("result", reserveService.update(reserveWrite));
         int num2=reserveWrite.getUser_id();
         model.addAttribute("dto", num2);

@@ -30,28 +30,20 @@ public class ReserveValidator implements Validator {
         if(date.length()!=8){
             errors.rejectValue("date","날짜는 8글자로 형식에 맞게 적어주세요");
         }
-
         String phone=reserveWrite.getPhone();
         if(phone.length()!=11||(!phone.startsWith("0"))){
             errors.rejectValue("phone","전화번호는 11글자로 형식에 맞게 적어주세요");
         }
-
         Pattern pattern1 = Pattern.compile("\\d{11}");
         Matcher matcher1 = pattern1.matcher(phone);
         if(!(matcher1.find())){
             errors.rejectValue("phone","숫자를 입력해주세요");
         }
-
         Pattern pattern2 = Pattern.compile("\\d{8}");
         Matcher matcher2 = pattern2.matcher(date);
-        if(!(matcher2.find())){
-            errors.rejectValue("date","숫자로 입력해주세요");
+        if(!(matcher2.find())) {
+            errors.rejectValue("date", "숫자로 입력해주세요");
         }
-
-
-
-
-
 
     }
 }
