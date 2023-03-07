@@ -13,8 +13,8 @@
 HTML5, CSS3, JavaScript, jQuery, JSON, Ajax, BootStrap4.0, Java, Spring, Spring Security, Maven, JDBC, Mysql, Dbeaver, Mybatis, Intellij, Apache Tomcat, lombok, Thymeleaf
 -------------------
 ## db 설정
-  name : leidb
-  id : leiuser
+  name : leidb<br/>
+  id : leiuser<br/>
   pw : 1234
   
   ###세팅 방법
