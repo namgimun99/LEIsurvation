@@ -30,8 +30,11 @@
 
 ## 프로젝트
 📺 프로젝트 메인페이지
-![image](https://github.com/namgimun99/Leisurvation/assets/124684039/89b3d7cd-508b-44f8-a98b-9a71953cf200)
-![image](https://github.com/namgimun99/Leisurvation/assets/124684039/a1a0cdc8-83bc-4206-a491-c7eaf56e6b3b)
+
+<img width="800" src="https://github.com/namgimun99/Leisurvation/assets/124684039/89b3d7cd-508b-44f8-a98b-9a71953cf200">
+
+<img width="800" src="https://github.com/namgimun99/Leisurvation/assets/124684039/a1a0cdc8-83bc-4206-a491-c7eaf56e6b3b">
+
 
 ## 🔍 프로젝트 특징 및 기능
 - 사용자가 레져를 예약, 관리, 후기등을 쉽게할 수 있고 나아가 비즈니스까지 할 수 있는 웹 사이트
@@ -56,11 +59,12 @@
 </br>
 
 📋 ERD 및 로직 프로세스
-![image](https://github.com/namgimun99/Leisurvation/assets/124684039/adac6b66-5f21-4549-a3c2-9110b9f61d86)
 
+<br>
+<img width="800" src="https://github.com/namgimun99/Leisurvation/assets/124684039/adac6b66-5f21-4549-a3c2-9110b9f61d86">
 
-![image](https://github.com/namgimun99/Leisurvation/assets/124684039/b2807a37-10e2-4978-a9dc-5ed407bc5534)
-
+<br>
+<img width="800" src="https://github.com/namgimun99/Leisurvation/assets/124684039/b2807a37-10e2-4978-a9dc-5ed407bc5534">
 
 
 
