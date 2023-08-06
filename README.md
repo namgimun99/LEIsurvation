@@ -59,7 +59,8 @@
 ![image](https://github.com/namgimun99/Leisurvation/assets/124684039/adac6b66-5f21-4549-a3c2-9110b9f61d86)
 
 
-![image](https://github.com/namgimun99/Leisurvation/assets/124684039/c6b9c467-6c20-4a51-99d3-50099aec70ad)
+![image](https://github.com/namgimun99/Leisurvation/assets/124684039/b2807a37-10e2-4978-a9dc-5ed407bc5534)
+
 
 
 
